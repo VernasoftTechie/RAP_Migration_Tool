@@ -14,7 +14,7 @@ architecture approval.
 ## Status
 
 - [x] 01 — Solution Architecture (draft, pending approval)
-- [ ] 02 — RAP Business Object Model
+- [x] 02 — RAP Business Object Model (draft, pending approval; OpenText resolved as stub adapter)
 - [ ] 03 — Persistence Model
 - [ ] 04 — CDS Design
 - [ ] 05 — Behavior Design
