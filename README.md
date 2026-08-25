@@ -18,8 +18,8 @@ architecture approval.
 - [x] 03 — Persistence Model (draft, pending approval)
 - [x] 04 — CDS Design (draft, pending approval)
 - [x] 05 — Behavior Design (draft, pending approval)
-- [ ] 06 — Service Definition
-- [ ] 07 — UI Navigation
+- [x] 06 — Service Definition (draft, pending approval)
+- [x] 07 — UI Navigation (draft, pending approval)
 - [ ] 08 — Detector Framework
 - [ ] 09 — Rule Engine
 - [ ] 10 — Delta Engine
