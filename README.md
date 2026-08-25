@@ -22,6 +22,10 @@ architecture approval.
 - [x] 07 — UI Navigation (draft, pending approval)
 - [x] 08 — Detector Framework (draft, pending approval)
 - [x] 09 — Rule Engine (draft, pending approval)
-- [ ] 10 — Delta Engine
-- [ ] 11 — TR Generation Design
-- [ ] 12 — OpenText Integration Design
+- [x] 10 — Delta Engine (draft, pending approval)
+- [x] 11 — TR Generation Design (draft, pending approval)
+- [x] 12 — OpenText Integration Design (draft, pending approval)
+
+All 12 design docs are drafted. See `docs/12_opentext_integration_design.md`
+for the consolidated list of 13 decisions needing sign-off before
+implementation begins.
