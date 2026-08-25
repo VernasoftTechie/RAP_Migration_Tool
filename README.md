@@ -20,8 +20,8 @@ architecture approval.
 - [x] 05 — Behavior Design (draft, pending approval)
 - [x] 06 — Service Definition (draft, pending approval)
 - [x] 07 — UI Navigation (draft, pending approval)
-- [ ] 08 — Detector Framework
-- [ ] 09 — Rule Engine
+- [x] 08 — Detector Framework (draft, pending approval)
+- [x] 09 — Rule Engine (draft, pending approval)
 - [ ] 10 — Delta Engine
 - [ ] 11 — TR Generation Design
 - [ ] 12 — OpenText Integration Design
