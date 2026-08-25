@@ -32,7 +32,7 @@ ENDCLASS.
    rows that merely *reference* something already transported elsewhere —
    only objects this scan is meant to package for migration. This
    distinction (transportable vs. reference-only) needs a flag on
-   `ZRAP_MT_OBJTYPE_T` (Doc 3 §2's check table) — a new field,
+   `ZRAP_MT_OTYPE_T` (Doc 3 §2's check table) — a new field,
    `IsTransportable`, flagged here as a small addition to that table.
 3. **Freeze Snapshot** — set `ZRAP_MT_VER-IS_IMMUTABLE = abap_true` (the
    behavior-definition-level enforcement from Doc 5 §1 takes over from

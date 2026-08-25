@@ -8,7 +8,7 @@
     <DATATYPE>CHAR</DATATYPE>
     <LENG>0000004</LENG>
     <OUTPUTLEN>0000004</OUTPUTLEN>
-    <DDTEXT>ZRAP_MT: object type code (bare, no value check -- used only as the key of the ZRAP_MT_OBJTYPE_T check table itself, to avoid a circular reference with domain ZRAP_MT_OBJTYPE)</DDTEXT>
+    <DDTEXT>ZRAP_MT: object type code (bare, no value check -- used only as the key of the ZRAP_MT_OTYPE_T check table itself, to avoid a circular reference with domain ZRAP_MT_OBJTYPE)</DDTEXT>
    </DD01V>
   </asx:values>
  </asx:abap>

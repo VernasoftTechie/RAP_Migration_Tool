@@ -21,12 +21,17 @@ descriptions).
 ### 2. `ZRAP_MT_OBJTYPE` as a check table, not a fixed domain value list
 
 Per Doc 1 §6's extensibility requirement, this domain is **value-table
-bound** to a small master table `ZRAP_MT_OBJTYPE_T` (ObjectType code +
+bound** to a small master table `ZRAP_MT_OTYPE_T` (ObjectType code +
 description + category), not a hardcoded `SELECT ... 'PROG' OR 'INCL' OR
 ...` list. Adding a type the constitution didn't originally list (Doc 1
 §19's future BRF+/Workflow/CPI detectors will discover new object types)
 is then a customizing insert, not a domain change requiring transport
 of a DDIC object.
+
+Named `ZRAP_MT_OTYPE_T`, not the more readable `ZRAP_MT_OBJTYPE_T` —
+a domain's value table name is capped at 16 characters classically, and
+`ZRAP_MT_OBJTYPE_T` (17 chars) exceeded it, a real activation error only
+visible once this got pulled into an actual system.
 
 ## 2. Data Elements (representative — full list is 1:1 with fields, omitted for brevity)
 
@@ -53,7 +58,7 @@ another's Fiori app instance).
 | MIGRATION_ID | X | `ZRAP_MT_MIGRATIONID` | from number range `ZRAP_MT` |
 | APPLICATION_NAME | | CHAR(40) | |
 | APPLICATION_TYPE | | `ZRAP_MT_APPTYPE` | |
-| PACKAGE | | `DEVCLASS` (reuse) | |
+| DEV_PACKAGE | | `DEVCLASS` (reuse) | `PACKAGE` is an ABAP reserved word — renamed after a real activation error |
 | DESCRIPTION | | CHAR(100) | |
 | CREATED_BY | | `SYUNAME` (reuse) | |
 | CREATED_ON | | `SY-DATUM` type (`DATS`) | |
@@ -71,7 +76,7 @@ Key: MANDT, MIGRATION_ID, VERSION_NO. Fields: `SCAN_TIMESTAMP`,
 ### `ZRAP_MT_OBJ`
 
 Key: MANDT, MIGRATION_ID, VERSION_NO, OBJECT_UUID. Fields: `OBJECT_NAME`
-(CHAR40), `OBJECT_TYPE` (`ZRAP_MT_OBJTYPE`), `PACKAGE`, `LAST_CHANGED_BY`,
+(CHAR40), `OBJECT_TYPE` (`ZRAP_MT_OBJTYPE`), `DEV_PACKAGE`, `LAST_CHANGED_BY`,
 `LAST_CHANGED_ON` (source-system values, captured not derived),
 `FINGERPRINT`, `DISCOVERED_BY_DETECTOR_ID`.
 Secondary index: (MIGRATION_ID, VERSION_NO, OBJECT_TYPE) — Page 4's
@@ -131,7 +136,7 @@ Key: MANDT, RULE_ID (CHAR20). Fields: `PATTERN` (regex or literal,
 `STRING`), `MATCH_TYPE` (`REGEX`/`LITERAL`), `CATEGORY`, `CLASSIFICATION`
 (`ZRAP_MT_BLKCLASS`), `RECOMMENDATION` (`STRING`), `IS_ACTIVE`.
 
-### `ZRAP_MT_OBJTYPE_T` (global config — the check table from §2)
+### `ZRAP_MT_OTYPE_T` (global config — the check table from §2)
 
 Key: MANDT, OBJECT_TYPE (`ZRAP_MT_OBJTYPE`). Fields: `DESCRIPTION`,
 `CATEGORY` (Repository/DDIC/Form/Enhancement/Integration — for §14's

@@ -163,7 +163,9 @@ ENDMETHOD.
 ## 6. Authorization
 
 Single new object `ZRAP_MT_AUTH` (per Doc 1 §11), fields: `ACTVT` (standard
-activity: 01 Create, 02 Change, 03 Display) and `PACKAGE` (so authorization
+activity: 01 Create, 02 Change, 03 Display) and `DEVCLASS` (the standard
+package auth field, reused rather than inventing one — also sidesteps the
+`PACKAGE`-is-a-reserved-word issue hit on the DDIC tables) so authorization
 can be scoped by which packages a user is allowed to run migration
 intelligence against — a real landscape will have teams that shouldn't see
 each other's in-flight migrations). Checked in `RunScan` and

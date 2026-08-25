@@ -49,7 +49,7 @@ verify on first activation, not a guarantee.
       Simpler fields are typed inline (built-in type, no dedicated data
       element) rather than hand-crafting ~80 mostly-trivial data
       elements — a deliberate scope trim, not an oversight.
-- [x] Check/config tables (4/4): `ZRAP_MT_OBJTYPE_T`, `ZRAP_MT_DETREG`,
+- [x] Check/config tables (4/4): `ZRAP_MT_OTYPE_T`, `ZRAP_MT_DETREG`,
       `ZRAP_MT_RULE`, `ZRAP_MT_DOCADPT`
 - [x] Core tables (9/9): `ZRAP_MT_HDR`, `ZRAP_MT_VER`, `ZRAP_MT_OBJ`,
       `ZRAP_MT_SRC`, `ZRAP_MT_CFG`, `ZRAP_MT_OPT`, `ZRAP_MT_BLK`,
@@ -73,17 +73,35 @@ naming prefix don't need to match.
 views, behavior definitions, service definition/binding, detector
 framework classes, rule/delta engines, TR generator, doc store stub.
 
-### Design fix caught while implementing
+### Design fixes caught while implementing
 
-Doc 3 §2 described `ZRAP_MT_OBJTYPE` as a value-table-bound domain
-pointing at check table `ZRAP_MT_OBJTYPE_T` — but the check table's own
-key field can't be typed with a domain that references that same table
-(circular). Split into two domains: `ZRAP_MT_OBJTYPE_KEY` (bare CHAR4, no
-value check — used only for the check table's own key) and
-`ZRAP_MT_OBJTYPE` (CHAR4, `ENTITYTAB = ZRAP_MT_OBJTYPE_T` — used by every
-table that actually references an object type). No design-doc change
-needed, just noting the resolution here since it wasn't visible until
-writing real DDIC source.
+- **Circular value-table reference.** Doc 3 §2 described `ZRAP_MT_OBJTYPE`
+  as a value-table-bound domain pointing at check table
+  `ZRAP_MT_OBJTYPE_T` — but the check table's own key field can't be typed
+  with a domain that references that same table (circular). Split into two
+  domains: `ZRAP_MT_OBJTYPE_KEY` (bare CHAR4, no value check — used only
+  for the check table's own key) and `ZRAP_MT_OBJTYPE` (CHAR4,
+  `ENTITYTAB = ZRAP_MT_OTYPE_T` — used by every table that actually
+  references an object type).
+- **Check table name too long.** `ZRAP_MT_OBJTYPE_T` (17 chars) exceeded
+  the 16-character limit for a domain's value table — a real activation
+  error (`Select a shorter name`) hit on first pull. Renamed to
+  `ZRAP_MT_OTYPE_T` (15 chars) everywhere: the table itself, the domain's
+  `ENTITYTAB`, and Docs 3/11.
+- **`PACKAGE` is an ABAP reserved word.** Real activation error on
+  `ZRAP_MT_HDR` and `ZRAP_MT_OBJ`, both of which had a `PACKAGE` field.
+  Renamed to `DEV_PACKAGE` in both tables (and the CDS source field in
+  Doc 4); the CDS-exposed alias stays `Package` since that's a view
+  column name, not a raw ABAP structure component, and isn't affected by
+  the same restriction. Also renamed the equivalent field on the
+  authorization object design (Doc 5 §6) to the standard `DEVCLASS`
+  field rather than inventing a same-named one.
+- **Data elements were missing max-length metadata.** The 4 custom data
+  elements omitted `HEADLEN`/`SCRLEN1-3` (the fields SAP normally
+  auto-fills on save), causing `Heading/Short/Medium/Long ... > maximum
+  length 0` errors on activation — fixed by adding those fields directly
+  to the `.dtel.xml` source so a future fresh pull doesn't need the same
+  manual re-save to resolve it.
 
 ### Number range object — manual step
 

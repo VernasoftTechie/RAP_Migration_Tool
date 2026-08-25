@@ -8,8 +8,8 @@
     <DATATYPE>CHAR</DATATYPE>
     <LENG>0000004</LENG>
     <OUTPUTLEN>0000004</OUTPUTLEN>
-    <ENTITYTAB>ZRAP_MT_OBJTYPE_T</ENTITYTAB>
-    <DDTEXT>ZRAP_MT: discovered object type, checked against ZRAP_MT_OBJTYPE_T</DDTEXT>
+    <ENTITYTAB>ZRAP_MT_OTYPE_T</ENTITYTAB>
+    <DDTEXT>ZRAP_MT: discovered object type, checked against ZRAP_MT_OTYPE_T</DDTEXT>
    </DD01V>
   </asx:values>
  </asx:abap>
