@@ -54,11 +54,20 @@ verify on first activation, not a guarantee.
 - [x] Core tables (9/9): `ZRAP_MT_HDR`, `ZRAP_MT_VER`, `ZRAP_MT_OBJ`,
       `ZRAP_MT_SRC`, `ZRAP_MT_CFG`, `ZRAP_MT_OPT`, `ZRAP_MT_BLK`,
       `ZRAP_MT_DOC`, `ZRAP_MT_NOTE`
-- [x] `.abapgit.xml` + `src/package.devc.xml` (package: "RAP Migration
-      Tool - ZRAP_MT Dependency Intelligence") — needed for this repo to
+- [x] `.abapgit.xml` + `src/package.devc.xml` — needed for this repo to
       pull at all, same requirement as `RAP_Migration_Tool`'s earlier fix
 - [ ] Number range object `ZRAP_MT` — **manual setup step, not
       abapGit-serialized** (see note below)
+
+**Target package: `ZRAP_MIGR` (existing, not a new package).** Note that
+`src/package.devc.xml` only carries descriptive text (`CTEXT`) — the
+actual package a repo's objects land in is chosen when you link the repo
+in abapGit (Repository → New Online / Clone in the SAP GUI/ADT abapGit
+UI): point it at your existing `ZRAP_MIGR` package there, and every
+object under `src/` is created inside it, no new package involved. This
+is unrelated to object naming — `ZRAP_MT_*` objects living inside package
+`ZRAP_MIGR` is completely normal; a package's name and its objects'
+naming prefix don't need to match.
 
 **Not yet done, next when you resume:** CDS interface + projection
 views, behavior definitions, service definition/binding, detector
