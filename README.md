@@ -39,23 +39,30 @@ there's no backend available in this environment to compile-check DDIC
 XML or ABAP syntax against. Treat every object as a best-effort draft to
 verify on first activation, not a guarantee.
 
-### Persistence layer
+### Persistence layer — complete (25 objects)
 
 - [x] Domains (8/8): `ZRAP_MT_APPTYPE`, `ZRAP_MT_OBJTYPE_KEY`,
       `ZRAP_MT_OBJTYPE`, `ZRAP_MT_CFGTYPE`, `ZRAP_MT_DOCTYPE`,
       `ZRAP_MT_SEVERITY`, `ZRAP_MT_BLKCLASS`, `ZRAP_MT_SCANSTAT`
-- [ ] Check/config tables (`ZRAP_MT_OBJTYPE_T`, `ZRAP_MT_DETREG`,
-      `ZRAP_MT_RULE`, `ZRAP_MT_DOCADPT`)
-- [ ] Core tables (`ZRAP_MT_HDR`, `ZRAP_MT_VER`, `ZRAP_MT_OBJ`,
+- [x] Data elements (4/4, reused across tables): `ZRAP_MT_MIGRATIONID`,
+      `ZRAP_MT_VERSIONNO`, `ZRAP_MT_UUID`, `ZRAP_MT_FINGERPRINT`.
+      Simpler fields are typed inline (built-in type, no dedicated data
+      element) rather than hand-crafting ~80 mostly-trivial data
+      elements — a deliberate scope trim, not an oversight.
+- [x] Check/config tables (4/4): `ZRAP_MT_OBJTYPE_T`, `ZRAP_MT_DETREG`,
+      `ZRAP_MT_RULE`, `ZRAP_MT_DOCADPT`
+- [x] Core tables (9/9): `ZRAP_MT_HDR`, `ZRAP_MT_VER`, `ZRAP_MT_OBJ`,
       `ZRAP_MT_SRC`, `ZRAP_MT_CFG`, `ZRAP_MT_OPT`, `ZRAP_MT_BLK`,
-      `ZRAP_MT_DOC`, `ZRAP_MT_NOTE`)
+      `ZRAP_MT_DOC`, `ZRAP_MT_NOTE`
+- [x] `.abapgit.xml` + `src/package.devc.xml` (package: "RAP Migration
+      Tool - ZRAP_MT Dependency Intelligence") — needed for this repo to
+      pull at all, same requirement as `RAP_Migration_Tool`'s earlier fix
 - [ ] Number range object `ZRAP_MT` — **manual setup step, not
       abapGit-serialized** (see note below)
-- [ ] CDS interface + projection views
-- [ ] Behavior definitions + implementation classes
-- [ ] Service definition + binding
-- [ ] Detector framework classes
-- [ ] Rule engine, delta engine, TR generator, doc store stub
+
+**Not yet done, next when you resume:** CDS interface + projection
+views, behavior definitions, service definition/binding, detector
+framework classes, rule/delta engines, TR generator, doc store stub.
 
 ### Design fix caught while implementing
 

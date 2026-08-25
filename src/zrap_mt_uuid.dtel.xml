@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DTEL" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD04V>
+    <ROLLNAME>ZRAP_MT_UUID</ROLLNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DATATYPE>RAW</DATATYPE>
+    <LENG>0000016</LENG>
+    <OUTPUTLEN>0000032</OUTPUTLEN>
+    <DDTEXT>UUID surrogate key (16 byte raw)</DDTEXT>
+    <REPTEXT>UUID</REPTEXT>
+    <SCRTEXT_S>UUID</SCRTEXT_S>
+    <SCRTEXT_M>UUID</SCRTEXT_M>
+    <SCRTEXT_L>UUID surrogate key</SCRTEXT_L>
+   </DD04V>
+  </asx:values>
+ </asx:abap>
+</abapGit>
