@@ -27,5 +27,53 @@ architecture approval.
 - [x] 12 — OpenText Integration Design (draft, pending approval)
 
 All 12 design docs are drafted. See `docs/12_opentext_integration_design.md`
-for the consolidated list of 13 decisions needing sign-off before
-implementation begins.
+for the consolidated list of 13 decisions — **all approved**, implementation
+underway.
+
+## Implementation status
+
+Objects appear under [`src/`](src/) as they're built, in persistence →
+CDS → behavior → service → classes order (same sequence as the design
+docs). **None of this has been activated against a real SAP system** —
+there's no backend available in this environment to compile-check DDIC
+XML or ABAP syntax against. Treat every object as a best-effort draft to
+verify on first activation, not a guarantee.
+
+### Persistence layer
+
+- [x] Domains (8/8): `ZRAP_MT_APPTYPE`, `ZRAP_MT_OBJTYPE_KEY`,
+      `ZRAP_MT_OBJTYPE`, `ZRAP_MT_CFGTYPE`, `ZRAP_MT_DOCTYPE`,
+      `ZRAP_MT_SEVERITY`, `ZRAP_MT_BLKCLASS`, `ZRAP_MT_SCANSTAT`
+- [ ] Check/config tables (`ZRAP_MT_OBJTYPE_T`, `ZRAP_MT_DETREG`,
+      `ZRAP_MT_RULE`, `ZRAP_MT_DOCADPT`)
+- [ ] Core tables (`ZRAP_MT_HDR`, `ZRAP_MT_VER`, `ZRAP_MT_OBJ`,
+      `ZRAP_MT_SRC`, `ZRAP_MT_CFG`, `ZRAP_MT_OPT`, `ZRAP_MT_BLK`,
+      `ZRAP_MT_DOC`, `ZRAP_MT_NOTE`)
+- [ ] Number range object `ZRAP_MT` — **manual setup step, not
+      abapGit-serialized** (see note below)
+- [ ] CDS interface + projection views
+- [ ] Behavior definitions + implementation classes
+- [ ] Service definition + binding
+- [ ] Detector framework classes
+- [ ] Rule engine, delta engine, TR generator, doc store stub
+
+### Design fix caught while implementing
+
+Doc 3 §2 described `ZRAP_MT_OBJTYPE` as a value-table-bound domain
+pointing at check table `ZRAP_MT_OBJTYPE_T` — but the check table's own
+key field can't be typed with a domain that references that same table
+(circular). Split into two domains: `ZRAP_MT_OBJTYPE_KEY` (bare CHAR4, no
+value check — used only for the check table's own key) and
+`ZRAP_MT_OBJTYPE` (CHAR4, `ENTITYTAB = ZRAP_MT_OBJTYPE_T` — used by every
+table that actually references an object type). No design-doc change
+needed, just noting the resolution here since it wasn't visible until
+writing real DDIC source.
+
+### Number range object — manual step
+
+`ZRAP_MT` (Doc 3 §4) needs to be created via SNRO directly in the target
+system — number range objects carry runtime interval state that doesn't
+serialize meaningfully as static abapGit source. Setup: object `ZRAP_MT`,
+one interval `01`, no year-dependency, number range `0000000001` to
+`0000999999`, external number range not allowed (so `MigrationID`
+generation can never collide with a manually-entered value).

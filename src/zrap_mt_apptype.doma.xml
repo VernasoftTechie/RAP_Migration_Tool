@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DOMA" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD01V>
+    <DOMNAME>ZRAP_MT_APPTYPE</DOMNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DATATYPE>CHAR</DATATYPE>
+    <LENG>0000005</LENG>
+    <OUTPUTLEN>0000005</OUTPUTLEN>
+    <VALEXI>X</VALEXI>
+    <DDTEXT>ZRAP_MT: application type of the scanned application</DDTEXT>
+   </DD01V>
+   <DD07V_TAB>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_APPTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0001</VALPOS>
+     <DOMVALUE_L>PROG</DOMVALUE_L>
+     <DDTEXT>Executable report</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_APPTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0002</VALPOS>
+     <DOMVALUE_L>MPOOL</DOMVALUE_L>
+     <DDTEXT>Module pool</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_APPTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0003</VALPOS>
+     <DOMVALUE_L>TRAN</DOMVALUE_L>
+     <DDTEXT>Transaction</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_APPTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0004</VALPOS>
+     <DOMVALUE_L>PACK</DOMVALUE_L>
+     <DDTEXT>Package</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_APPTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0005</VALPOS>
+     <DOMVALUE_L>CLAS</DOMVALUE_L>
+     <DDTEXT>Global class</DDTEXT>
+    </DD07V>
+   </DD07V_TAB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

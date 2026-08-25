@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DOMA" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD01V>
+    <DOMNAME>ZRAP_MT_SCANSTAT</DOMNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DATATYPE>CHAR</DATATYPE>
+    <LENG>0000012</LENG>
+    <OUTPUTLEN>0000012</OUTPUTLEN>
+    <VALEXI>X</VALEXI>
+    <DDTEXT>ZRAP_MT: migration workspace scan status</DDTEXT>
+   </DD01V>
+   <DD07V_TAB>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_SCANSTAT</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0001</VALPOS>
+     <DOMVALUE_L>NEW</DOMVALUE_L>
+     <DDTEXT>Never scanned</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_SCANSTAT</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0002</VALPOS>
+     <DOMVALUE_L>SCANNING</DOMVALUE_L>
+     <DDTEXT>Scan in progress</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_SCANSTAT</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0003</VALPOS>
+     <DOMVALUE_L>SCAN_OK</DOMVALUE_L>
+     <DDTEXT>Scan completed</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_SCANSTAT</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0004</VALPOS>
+     <DOMVALUE_L>SCAN_FAILED</DOMVALUE_L>
+     <DDTEXT>Scan failed</DDTEXT>
+    </DD07V>
+   </DD07V_TAB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

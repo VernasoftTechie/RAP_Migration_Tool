@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DOMA" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD01V>
+    <DOMNAME>ZRAP_MT_CFGTYPE</DOMNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DATATYPE>CHAR</DATATYPE>
+    <LENG>0000006</LENG>
+    <OUTPUTLEN>0000006</OUTPUTLEN>
+    <VALEXI>X</VALEXI>
+    <DDTEXT>ZRAP_MT: configuration reference type</DDTEXT>
+   </DD01V>
+   <DD07V_TAB>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_CFGTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0001</VALPOS>
+     <DOMVALUE_L>SNRO</DOMVALUE_L>
+     <DDTEXT>Number range object</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_CFGTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0002</VALPOS>
+     <DOMVALUE_L>TVARVC</DOMVALUE_L>
+     <DDTEXT>Table/variant variable</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_CFGTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0003</VALPOS>
+     <DOMVALUE_L>SPRO</DOMVALUE_L>
+     <DDTEXT>IMG/customizing table</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_CFGTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0004</VALPOS>
+     <DOMVALUE_L>SM30</DOMVALUE_L>
+     <DDTEXT>Maintenance view</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_CFGTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0005</VALPOS>
+     <DOMVALUE_L>AUTH</DOMVALUE_L>
+     <DDTEXT>Authorization object</DDTEXT>
+    </DD07V>
+   </DD07V_TAB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

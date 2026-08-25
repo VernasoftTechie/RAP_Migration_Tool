@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DOMA" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD01V>
+    <DOMNAME>ZRAP_MT_DOCTYPE</DOMNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DATATYPE>CHAR</DATATYPE>
+    <LENG>0000015</LENG>
+    <OUTPUTLEN>0000015</OUTPUTLEN>
+    <VALEXI>X</VALEXI>
+    <DDTEXT>ZRAP_MT: document type</DDTEXT>
+   </DD01V>
+   <DD07V_TAB>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_DOCTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0001</VALPOS>
+     <DOMVALUE_L>FSD</DOMVALUE_L>
+     <DDTEXT>Functional spec</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_DOCTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0002</VALPOS>
+     <DOMVALUE_L>TSD</DOMVALUE_L>
+     <DDTEXT>Technical spec</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_DOCTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0003</VALPOS>
+     <DOMVALUE_L>UNIT_TEST</DOMVALUE_L>
+     <DDTEXT>Unit test evidence</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_DOCTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0004</VALPOS>
+     <DOMVALUE_L>SIT</DOMVALUE_L>
+     <DDTEXT>System integration test</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_DOCTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0005</VALPOS>
+     <DOMVALUE_L>UAT</DOMVALUE_L>
+     <DDTEXT>User acceptance test</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_DOCTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0006</VALPOS>
+     <DOMVALUE_L>EXCEL_MAPPING</DOMVALUE_L>
+     <DDTEXT>Excel mapping</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_DOCTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0007</VALPOS>
+     <DOMVALUE_L>SOP</DOMVALUE_L>
+     <DDTEXT>Standard operating procedure</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_DOCTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0008</VALPOS>
+     <DOMVALUE_L>BUSINESS_NOTE</DOMVALUE_L>
+     <DDTEXT>Business note</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZRAP_MT_DOCTYPE</DOMNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <VALPOS>0009</VALPOS>
+     <DOMVALUE_L>README</DOMVALUE_L>
+     <DDTEXT>Generated README (TR package metadata, Doc 11)</DDTEXT>
+    </DD07V>
+   </DD07V_TAB>
+  </asx:values>
+ </asx:abap>
+</abapGit>
