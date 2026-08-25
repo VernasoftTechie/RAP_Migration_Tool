@@ -17,7 +17,7 @@ architecture approval.
 - [x] 02 — RAP Business Object Model (draft, pending approval; OpenText resolved as stub adapter)
 - [x] 03 — Persistence Model (draft, pending approval)
 - [x] 04 — CDS Design (draft, pending approval)
-- [ ] 05 — Behavior Design
+- [x] 05 — Behavior Design (draft, pending approval)
 - [ ] 06 — Service Definition
 - [ ] 07 — UI Navigation
 - [ ] 08 — Detector Framework
