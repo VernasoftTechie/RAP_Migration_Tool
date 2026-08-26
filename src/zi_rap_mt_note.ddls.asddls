@@ -6,6 +6,9 @@ define view entity ZI_RAP_MT_NOTE
   association to parent ZI_RAP_MT_VER as _Version
     on  $projection.MigrationID = _Version.MigrationID
     and $projection.VersionNo   = _Version.VersionNo
+
+  association to parent ZI_RAP_MT_HDR as _Header
+    on $projection.MigrationID = _Header.MigrationID
 {
   key migration_id  as MigrationID,
   key version_no     as VersionNo,
@@ -14,5 +17,6 @@ define view entity ZI_RAP_MT_NOTE
       created_by          as CreatedBy,
       created_on           as CreatedOn,
 
-      _Version
+      _Version,
+      _Header
 }

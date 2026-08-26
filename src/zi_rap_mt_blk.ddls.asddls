@@ -11,6 +11,9 @@ define view entity ZI_RAP_MT_BLK
     on  $projection.MigrationID = _Object.MigrationID
     and $projection.VersionNo   = _Object.VersionNo
     and $projection.ObjectUUID  = _Object.ObjectUUID
+
+  association to parent ZI_RAP_MT_HDR as _Header
+    on $projection.MigrationID = _Header.MigrationID
 {
   key migration_id   as MigrationID,
   key version_no      as VersionNo,
@@ -24,5 +27,6 @@ define view entity ZI_RAP_MT_BLK
       source_line             as SourceLine,
 
       _Version,
-      _Object
+      _Object,
+      _Header
 }

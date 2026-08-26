@@ -208,6 +208,18 @@ independent issue — should clear once this re-pulls clean.
   correct readonly field list back to all 8 children (e.g. `MigrationID,
   VersionNo` for most; `MigrationID, VersionNo, ObjectUUID` for
   `ZI_RAP_MT_SRC`, whose parent link uses all three).
+- **Fixed:** 14 activation errors, all "association 'X' does not reference
+  entity 'ZI_RAP_MT_HDR', which is specified as authorization/lock
+  master" — a real RAP constraint: `lock`/`authorization dependent by`
+  must reference an association pointing **directly** at the entity
+  marked master, with no transitive chaining through an intermediate
+  dependent (`OBJ`'s `_Version` pointing at `VER`, which itself delegates
+  further to `HDR`, doesn't satisfy it). Fixed by adding a second,
+  direct-to-root `_Header` association on all 7 entities below
+  `ZI_RAP_MT_VER` (in their CDS interface views, Doc 4) and pointing
+  `lock`/`authorization dependent by` at that instead of `_Version`/
+  `_Object`. This is the same pattern SAP's own Travel/Booking/
+  BookingSupplement reference app uses for exactly this reason.
 - **The implementation class body is still not included on purpose** —
   same reasoning as before: RAP behavior handler signatures are
   framework-generated per your system's RAP runtime patch level. No

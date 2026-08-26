@@ -18,6 +18,16 @@ and pass-through associations — consistent with this doc's own "no
 update/delete below the root" design, just enforced across the whole
 tree rather than only described for the root.
 
+**Second correction:** every field referenced in a to-parent association's
+`ON` clause must be declared `field(readonly)` in that child's own block —
+independent of whether `update` itself is even declared. And `lock`/
+`authorization dependent by` must reference an association pointing
+**directly** at the entity marked `lock master`/`authorization master`
+(`ZI_RAP_MT_HDR`) — it does not chain transitively through `_Version`.
+Every entity below `ZI_RAP_MT_VER` therefore carries an additional direct
+`_Header` association (Doc 4) used only for this delegation, alongside
+its normal parent association used for data navigation.
+
 ## 1. Root Behavior Definition — `ZRAP_MT_HDR`
 
 ```abap

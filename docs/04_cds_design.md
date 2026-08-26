@@ -117,6 +117,18 @@ of repetitive boilerplate; will be written in full at implementation time
 directly as source files, not re-derived from scratch, so nothing here is
 wasted effort.
 
+**Found only once real activation was attempted (Doc 5 covers the
+consequence in more depth):** every entity below `ZI_RAP_MT_VER` also
+carries a second `association to parent ZI_RAP_MT_HDR as _Header`,
+purely for `lock`/`authorization dependent by` delegation. RAP requires
+that clause to reference the actual `lock master`/`authorization master`
+entity **directly** — it does not chain transitively through an
+intermediate dependent entity (`OBJ → VER → HDR` doesn't work; `OBJ`
+needs its own direct link to `HDR`). This is the same pattern SAP's own
+multi-level reference apps use (e.g. Travel/Booking/BookingSupplement).
+`ZI_RAP_MT_SRC`, three levels deep, needs this too, alongside its
+existing `_Object` association.
+
 ## 3. Projection View Notes
 
 Projections (`ZC_RAP_MT_*`) mirror the interface views field-for-field for

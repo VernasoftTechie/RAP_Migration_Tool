@@ -6,6 +6,9 @@ define view entity ZI_RAP_MT_DOC
   association to parent ZI_RAP_MT_VER as _Version
     on  $projection.MigrationID = _Version.MigrationID
     and $projection.VersionNo   = _Version.VersionNo
+
+  association to parent ZI_RAP_MT_HDR as _Header
+    on $projection.MigrationID = _Header.MigrationID
 {
   key migration_id     as MigrationID,
   key version_no        as VersionNo,
@@ -17,5 +20,6 @@ define view entity ZI_RAP_MT_DOC
       uploaded_by               as UploadedBy,
       upload_timestamp           as UploadTimestamp,
 
-      _Version
+      _Version,
+      _Header
 }

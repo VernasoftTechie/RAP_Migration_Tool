@@ -38,73 +38,80 @@ authorization dependent by _Header
 
 define behavior for ZI_RAP_MT_OBJ alias RepositoryObject
 persistent table zrap_mt_obj
-lock dependent by _Version
-authorization dependent by _Version
+lock dependent by _Header
+authorization dependent by _Header
 {
   field ( readonly ) MigrationID, VersionNo;
 
   association _Version;
+  association _Header;
   association _Source { create; }
 }
 
 define behavior for ZI_RAP_MT_SRC alias SourceRepository
 persistent table zrap_mt_src
-lock dependent by _Object
-authorization dependent by _Object
+lock dependent by _Header
+authorization dependent by _Header
 {
   field ( readonly ) MigrationID, VersionNo, ObjectUUID;
 
   association _Object;
+  association _Header;
 }
 
 define behavior for ZI_RAP_MT_CFG alias Configuration
 persistent table zrap_mt_cfg
-lock dependent by _Version
-authorization dependent by _Version
+lock dependent by _Header
+authorization dependent by _Header
 {
   field ( readonly ) MigrationID, VersionNo;
 
   association _Version;
+  association _Header;
 }
 
 define behavior for ZI_RAP_MT_OPT alias OptimizationFinding
 persistent table zrap_mt_opt
-lock dependent by _Version
-authorization dependent by _Version
+lock dependent by _Header
+authorization dependent by _Header
 {
   field ( readonly ) MigrationID, VersionNo;
 
   association _Version;
   association _Object;
+  association _Header;
 }
 
 define behavior for ZI_RAP_MT_BLK alias Blocker
 persistent table zrap_mt_blk
-lock dependent by _Version
-authorization dependent by _Version
+lock dependent by _Header
+authorization dependent by _Header
 {
   field ( readonly ) MigrationID, VersionNo;
 
   association _Version;
   association _Object;
+  association _Header;
 }
 
 define behavior for ZI_RAP_MT_DOC alias Document
 persistent table zrap_mt_doc
-lock dependent by _Version
-authorization dependent by _Version
+lock dependent by _Header
+authorization dependent by _Header
 {
   field ( readonly ) MigrationID, VersionNo;
 
   association _Version;
+  association _Header;
 }
 
 define behavior for ZI_RAP_MT_NOTE alias ArchitectNote
 persistent table zrap_mt_note
-lock dependent by _Version
-authorization dependent by _Version
+lock dependent by _Header
+authorization dependent by _Header
 {
   field ( readonly ) MigrationID, VersionNo;
 
   association _Version;
+  association _Header;
 }
