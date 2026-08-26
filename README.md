@@ -124,6 +124,16 @@ rather than a small CDS view wrapping it. Works fine in classic
 on-premise ABAP, just not "ABAP Cloud"-idiomatic — can revisit later if
 this ever needs to run release-contract-clean.
 
+**Fixed:** 8 of 9 views activated on the metadata fix above; the 9th,
+`ZI_RAP_MT_OBJ`, failed with "The column OBJECTTYPE is unknown" (the
+other 8 only failed as a downstream dependency of this one). Cause: its
+association to the raw table `ZRAP_MT_OTYPE_T` used the CDS-style alias
+`.ObjectType` in the `on` condition — but a plain DB table has no CDS
+aliases, so the condition needs the real column name, `.OBJECT_TYPE`
+(with the underscore). Without it, CDS folded the camelCase into a
+literal (non-existent) column named `OBJECTTYPE`. Fixed in both the
+source and Doc 4.
+
 **Not yet done, next when you resume:** CDS projection views + behavior
 definitions, service definition/binding, detector framework classes,
 rule/delta engines, TR generator, doc store stub.

@@ -10,7 +10,7 @@ define view entity ZI_RAP_MT_OBJ
   composition [0..1] of ZI_RAP_MT_SRC as _Source
 
   association [0..1] to ZRAP_MT_OTYPE_T as _ObjectTypeText
-    on $projection.ObjectType = _ObjectTypeText.ObjectType
+    on $projection.ObjectType = _ObjectTypeText.OBJECT_TYPE
 {
   key migration_id              as MigrationID,
   key version_no                 as VersionNo,

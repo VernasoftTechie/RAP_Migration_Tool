@@ -89,7 +89,7 @@ define view entity ZI_RAP_MT_OBJ
   association [0..1] to ZI_RAP_MT_SRC as _Source   on $projection.MigrationID = _Source.MigrationID
                                                    and $projection.VersionNo  = _Source.VersionNo
                                                    and $projection.ObjectUUID = _Source.ObjectUUID
-  association [0..1] to ZRAP_MT_OTYPE_T as _ObjectTypeText on $projection.ObjectType = _ObjectTypeText.ObjectType
+  association [0..1] to ZRAP_MT_OTYPE_T as _ObjectTypeText on $projection.ObjectType = _ObjectTypeText.OBJECT_TYPE
 {
   key migration_id            as MigrationID,
   key version_no              as VersionNo,
