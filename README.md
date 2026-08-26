@@ -134,9 +134,35 @@ aliases, so the condition needs the real column name, `.OBJECT_TYPE`
 literal (non-existent) column named `OBJECTTYPE`. Fixed in both the
 source and Doc 4.
 
-**Not yet done, next when you resume:** CDS projection views + behavior
-definitions, service definition/binding, detector framework classes,
-rule/delta engines, TR generator, doc store stub.
+### CDS layer — projection views complete (9/9)
+
+- [x] `ZC_RAP_MT_HDR` (root) through `ZC_RAP_MT_NOTE`, each with `@UI`
+      annotations wired to Doc 7's page layout: `@UI.lineItem` for List
+      Report/table columns, `@UI.selectionField` for filter bars on the
+      high-volume tables (Objects, Configs, Findings, Blockers, Documents
+      — per Doc 7's explicit point that these need real filtering),
+      `@UI.identification` for Object Page general-info sections,
+      `@UI.dataPoint` for the six readiness metrics, `@UI.facet` wiring
+      the composition/navigation structure.
+- Same three-file pattern as the interface views (`.ddls.asddls` +
+  `.ddls.xml` with `<DDLS>` + `.ddls.baseinfo` pointing `FROM` at the
+  underlying interface view, e.g. `ZC_RAP_MT_HDR`'s baseinfo lists
+  `ZI_RAP_MT_HDR`) — same format, now proven correct, so no new guessing
+  here.
+- **Navigation clarification, not in Doc 7 explicitly:** Doc 7 places
+  Pages 4/6/7/8 (Objects/Config/Blockers/Documents) as facets reachable
+  from the Migration Workspace Object Page, but structurally those are
+  `_Version`'s children, not `_Header`'s (Doc 2's composition tree only
+  has `HDR → Version → {Object, Config, ...}`). Resolved as: `ZC_RAP_MT_HDR`'s
+  Object Page shows the Overview + a Version History facet (Page 9);
+  drilling into a specific version's own Object Page (`ZC_RAP_MT_VER`)
+  is where Pages 4/6/7/8's facets actually live. This is the structurally
+  correct reading of the composition tree, not a deviation from it.
+- `Pack`, not `Package`, used consistently — no reversions.
+
+**Not yet done, next when you resume:** behavior definitions, service
+definition/binding, detector framework classes, rule/delta engines, TR
+generator, doc store stub.
 
 ### Design fixes caught while implementing
 
