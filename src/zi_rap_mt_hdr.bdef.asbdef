@@ -1,21 +1,117 @@
-managed implementation in class zbp_rap_mt_hdr unique;
-strict(2);
+managed implementation in class zbp_i_rap_mt_hdr unique;
+strict ( 2 );
 
-define behavior for ZI_RAP_MT_HDR alias MigrationWorkspace
+define behavior for ZI_RAP_MT_HDR //alias <alias_name>
 persistent table zrap_mt_hdr
 lock master
 authorization master ( instance )
-etag master LastScanTimestamp
+//etag master <field_name>
 {
   create;
-
-  field ( readonly ) MigrationID, CreatedBy, CreatedOn, CurrentVersionNo,
-                      LastScanTimestamp, ScanStatus,
-                      ReadinessRepositoryPct, ReadinessDdicPct,
-                      ReadinessConfigPct, ReadinessDocumentationPct,
-                      ReadinessOptimizationHealth, ReadinessBlockerCount;
-
-  field ( mandatory ) ApplicationName, ApplicationType, Pack;
-
+  update;
+  delete;
   association _Version { create; }
+}
+
+define behavior for ZI_RAP_MT_VER //alias <alias_name>
+persistent table zrap_mt_ver
+lock dependent by _Header
+authorization dependent by _Header
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) MigrationID;
+  association _Header;
+  association _Blocker { create; }
+  association _Config { create; }
+  association _Document { create; }
+  association _Note { create; }
+  association _Object { create; }
+  association _Finding { create; }
+}
+
+define behavior for ZI_RAP_MT_BLK //alias <alias_name>
+persistent table zrap_mt_blk
+//lock dependent by <no_to_master_association found>
+//authorization dependent by <no_to_master_association found>
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) MigrationID, VersionNo;
+  association _Version;
+}
+
+define behavior for ZI_RAP_MT_CFG //alias <alias_name>
+persistent table zrap_mt_cfg
+//lock dependent by <no_to_master_association found>
+//authorization dependent by <no_to_master_association found>
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) MigrationID, VersionNo;
+  association _Version;
+}
+
+define behavior for ZI_RAP_MT_DOC //alias <alias_name>
+persistent table zrap_mt_doc
+//lock dependent by <no_to_master_association found>
+//authorization dependent by <no_to_master_association found>
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) MigrationID, VersionNo;
+  association _Version;
+}
+
+define behavior for ZI_RAP_MT_NOTE //alias <alias_name>
+persistent table zrap_mt_note
+//lock dependent by <no_to_master_association found>
+//authorization dependent by <no_to_master_association found>
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) MigrationID, VersionNo;
+  association _Version;
+}
+
+define behavior for ZI_RAP_MT_OBJ //alias <alias_name>
+persistent table zrap_mt_obj
+//lock dependent by <no_to_master_association found>
+//authorization dependent by <no_to_master_association found>
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) MigrationID, VersionNo;
+  association _Version;
+  association _Source { create; }
+}
+
+define behavior for ZI_RAP_MT_SRC //alias <alias_name>
+persistent table zrap_mt_src
+//lock dependent by <no_to_master_association found>
+//authorization dependent by <no_to_master_association found>
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) MigrationID, VersionNo, ObjectUUID;
+  association _Object;
+}
+
+define behavior for ZI_RAP_MT_OPT //alias <alias_name>
+persistent table zrap_mt_opt
+//lock dependent by <no_to_master_association found>
+//authorization dependent by <no_to_master_association found>
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) MigrationID, VersionNo;
+  association _Version;
 }

@@ -2,6 +2,13 @@
   "BASEINFO": {
     "FROM": [
       "ZI_RAP_MT_DOC"
+    ],
+    "ASSOCIATED": [
+      "ZC_RAP_MT_VER",
+      "ZI_RAP_MT_VER"
+    ],
+    "BASE": [
+      "ZI_RAP_MT_DOC"
     ]
   }
 }
