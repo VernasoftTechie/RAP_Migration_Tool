@@ -1,15 +1,22 @@
 managed implementation in class zbp_i_rap_mt_hdr unique;
 strict ( 2 );
 
-define behavior for ZI_RAP_MT_HDR //alias <alias_name>
+define behavior for ZI_RAP_MT_HDR alias MigrationWorkspace
 persistent table zrap_mt_hdr
 lock master
 authorization master ( instance )
-//etag master <field_name>
+etag master LastScanTimestamp
 {
   create;
-  update;
-  delete;
+
+  field ( readonly ) MigrationID, CreatedBy, CreatedOn, CurrentVersionNo,
+                      LastScanTimestamp, ScanStatus,
+                      ReadinessRepositoryPct, ReadinessDdicPct,
+                      ReadinessConfigPct, ReadinessDocumentationPct,
+                      ReadinessOptimizationHealth, ReadinessBlockerCount;
+
+  field ( mandatory ) ApplicationName, ApplicationType, Pack;
+
   association _Version { create; }
 }
 

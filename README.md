@@ -173,30 +173,37 @@ almost certainly the same cascading symptom (RAP couldn't recognize
 `ZC_RAP_MT_HDR` as root once it failed to parse) rather than an
 independent issue — should clear once this re-pulls clean.
 
-### Behavior layer — root only, first (1/9), unverified metadata format
+### Behavior layer — full composition tree (1 object, 9 entities)
 
-- [ ] `ZI_RAP_MT_HDR` root behavior definition — `create` only, no custom
-      actions yet (`RunScan`/`SaveVersion`/`GenerateMigrationPackage`
-      deliberately deferred until this activates, per the same
-      start-small-first lesson from CDS). Uses `.bdef.asbdef` for the
-      source (standard RAP syntax, confident) and a **guessed** `.bdef.xml`
-      metadata format (`<BDEF>` root, `BDEFNAME`/`DDLANGUAGE`/`DDTEXT`
-      fields) — following the same "structure name matches the object
-      type suffix" pattern that turned out correct for `<DDLS>`, but
-      unverified until proven.
-- **If this fails to pull/activate**: don't iterate on more XML guesses —
-  create `ZI_RAP_MT_HDR`'s behavior definition by hand in ADT (paste the
-  `.bdef.asbdef` content), activate, then run abapGit Sync. That's the
-  same technique that resolved the CDS metadata format, and it's faster
-  than another guess-and-report cycle.
-- **The implementation class (`ZBP_RAP_MT_HDR`) is not included here on
-  purpose.** RAP behavior handler method signatures are framework-
-  generated and tied to the exact system's RAP runtime patch level —
-  the same reason the earlier `HR_DataQuality_RAP_PoC` project's README
-  flagged this. Once the behavior definition activates, **let ADT
-  scaffold the class** (via "New Behavior Implementation" when you
-  activate the BDEF) rather than me hand-writing the signatures — I'll
-  fill in the method bodies once the shell exists.
+- [x] `ZI_RAP_MT_HDR.bdef.asbdef` — **one behavior definition object
+      covers the entire composition tree**, not one per entity as
+      originally assumed. Corrected via the same "create by hand once,
+      Sync" technique that fixed CDS: you created the root manually in
+      ADT, activated it, and the real Sync revealed both the correct
+      `.bdef.xml` format (genuinely different from a guess — real
+      abapGit `LCL_OBJECT_BDEF` output includes ADT-style `LINKS`/`HREF`
+      metadata, adopted as-is) and that ADT auto-scaffolds **every**
+      entity in the tree into the same file when you create the root.
+- **Refined the ADT default scaffold to match Doc 5's actual design**,
+  rather than keeping the bare CRUD defaults: removed `update;`/`delete;`
+  from every entity (ADT's scaffold gives blanket CRUD by default, which
+  contradicts "insert-only, never delete") — every child now has only
+  `create` via its parent association, plus pass-through associations
+  for navigation. Root keeps `create` with `field(readonly)`/
+  `field(mandatory)` per Doc 5. Lock/authorization delegation chains
+  filled in explicitly for the leaf entities (`lock dependent by
+  _Version`, etc.) where ADT's auto-detection had left `//no
+  to-master-association found` placeholder comments.
+- **Corrected implementation class name**: `ZBP_I_RAP_MT_HDR` (ADT's
+  real generated name, with the `I_` infix), not `ZBP_RAP_MT_HDR` as
+  Doc 5 first drafted. Doc 5 updated to match.
+- **The implementation class body is still not included on purpose** —
+  same reasoning as before: RAP behavior handler signatures are
+  framework-generated per your system's RAP runtime patch level. No
+  custom actions are declared yet either (`RunScan`/`SaveVersion`/
+  `GenerateMigrationPackage`), so there's currently nothing requiring
+  custom method bodies — adding those is the next step, at which point
+  ADT will need to re-scaffold the class with the new action stubs.
 
 **Not yet done, next when you resume:** the other 8 behavior definitions
 (mostly insert-only children), the three custom root actions, service

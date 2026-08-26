@@ -4,10 +4,24 @@
 validations, determinations, and authorization — the doc that makes Golden
 Constitution Rules 1–4 executable, not just structural.
 
+**Implementation correction (found via real ADT scaffolding, not
+guessed):** a behavior definition is **one ABAP repository object per
+composition tree**, not one per CDS entity. All 9 entities'
+`define behavior for X { }` blocks live in a single source file/object,
+named after the root (`ZI_RAP_MT_HDR`). Also: the implementation class
+name ADT actually generates is `ZBP_I_RAP_MT_HDR` (with the `I_` infix),
+not `ZBP_RAP_MT_HDR` as first drafted here — corrected below and in
+Golden Constitution Rule 7's examples going forward. Every child entity's
+default-scaffolded `update;`/`delete;` operations were removed in the
+real implementation, keeping only `create` (via the parent association)
+and pass-through associations — consistent with this doc's own "no
+update/delete below the root" design, just enforced across the whole
+tree rather than only described for the root.
+
 ## 1. Root Behavior Definition — `ZRAP_MT_HDR`
 
 ```abap
-managed implementation in class zbp_rap_mt_hdr unique;
+managed implementation in class zbp_i_rap_mt_hdr unique;
 strict(2);
 
 define behavior for ZI_RAP_MT_HDR alias MigrationWorkspace
