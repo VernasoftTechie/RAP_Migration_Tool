@@ -2,6 +2,15 @@
   "BASEINFO": {
     "FROM": [
       "ZI_RAP_MT_OPT"
+    ],
+    "ASSOCIATED": [
+      "ZC_RAP_MT_OBJ",
+      "ZC_RAP_MT_VER",
+      "ZI_RAP_MT_OBJ",
+      "ZI_RAP_MT_VER"
+    ],
+    "BASE": [
+      "ZI_RAP_MT_OPT"
     ]
   }
 }
