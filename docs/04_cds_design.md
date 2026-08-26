@@ -131,6 +131,12 @@ reference apps use (e.g. Travel/Booking/BookingSupplement).
 `ZI_RAP_MT_SRC`, three levels deep, needs this too, alongside its
 existing `_Object` association.
 
+This `_Header` association must also be **exposed at the projection
+layer** (`ZC_RAP_MT_*`), as a plain pass-through, on the same 7 entities
+— otherwise the projection behavior definition can't "project" the lock
+master relation, even though the projection layer never navigates it for
+data purposes.
+
 ## 3. Projection View Notes
 
 Projections (`ZC_RAP_MT_*`) mirror the interface views field-for-field for

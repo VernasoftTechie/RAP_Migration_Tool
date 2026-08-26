@@ -248,15 +248,16 @@ entities, all 4 fixes above applied).**
       mirroring exactly what the interface layer actually permits per
       entity. Needed before the service definition/binding can expose
       anything at all.
-- **This one should go smoothly** — same `BDEF` object type as the
-  interface behavior definition, which we now have a real, verified
-  metadata format for (unlike the earlier round of guessing). No new
-  format risk here, just applying the proven shape with the projection
-  view names substituted in.
-- Deliberately **excludes** `use association _Header`/`use association
-  _Header` for the 7 lock/auth-delegation associations — those only
-  exist on the interface views, never exposed at the projection/OData
-  layer, so there's nothing to `use` there.
+- **Correction** (this part of the plan was wrong): the 7 lock/auth-only
+  `_Header` associations do need to be projected after all —
+  `"The association '_HEADER' of the base entity ... is missing in the
+  behavior definition of projection entity ...This means that the 'lock
+  master' relation cannot be projected."` Added a plain `_Header`
+  pass-through to all 7 affected `ZC_RAP_MT_*` projection views (Doc 4)
+  and `use association _Header;` to their projection behavior blocks.
+  The metadata format itself (the actual thing this doc originally
+  flagged as "should go smoothly") had no errors — this was a missing
+  association, not a format problem.
 
 **Not yet done, next when you resume:** the three custom root actions
 (`RunScan`/`SaveVersion`/`GenerateMigrationPackage`) plus `UploadDocument`/

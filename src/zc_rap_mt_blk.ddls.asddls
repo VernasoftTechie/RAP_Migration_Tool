@@ -28,5 +28,6 @@ define view entity ZC_RAP_MT_BLK
   SourceLine,
 
   _Version : redirected to parent ZC_RAP_MT_VER,
-  _Object  : redirected to ZC_RAP_MT_OBJ
+  _Object  : redirected to ZC_RAP_MT_OBJ,
+  _Header
 }

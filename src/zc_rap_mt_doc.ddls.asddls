@@ -26,5 +26,6 @@ define view entity ZC_RAP_MT_DOC
   UploadedBy,
   UploadTimestamp,
 
-  _Version : redirected to parent ZC_RAP_MT_VER
+  _Version : redirected to parent ZC_RAP_MT_VER,
+  _Header
 }

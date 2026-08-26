@@ -24,5 +24,6 @@ define view entity ZC_RAP_MT_CFG
   Description,
   Detail,
 
-  _Version : redirected to parent ZC_RAP_MT_VER
+  _Version : redirected to parent ZC_RAP_MT_VER,
+  _Header
 }
