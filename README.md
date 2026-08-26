@@ -237,8 +237,31 @@ independent issue — should clear once this re-pulls clean.
   custom method bodies — adding those is the next step, at which point
   ADT will need to re-scaffold the class with the new action stubs.
 
-**Not yet done, next when you resume:** the other 8 behavior definitions
-(mostly insert-only children), the three custom root actions, service
+**Interface behavior definition — confirmed fully active (all 9
+entities, all 4 fixes above applied).**
+
+### Projection behavior definition — added, high confidence
+
+- [ ] `ZC_RAP_MT_HDR.bdef.asbdef` — `projection;` (no implementation
+      class needed at this layer), exposing `use create` on the root and
+      `use association X { create; }` / plain `use association X;`
+      mirroring exactly what the interface layer actually permits per
+      entity. Needed before the service definition/binding can expose
+      anything at all.
+- **This one should go smoothly** — same `BDEF` object type as the
+  interface behavior definition, which we now have a real, verified
+  metadata format for (unlike the earlier round of guessing). No new
+  format risk here, just applying the proven shape with the projection
+  view names substituted in.
+- Deliberately **excludes** `use association _Header`/`use association
+  _Header` for the 7 lock/auth-delegation associations — those only
+  exist on the interface views, never exposed at the projection/OData
+  layer, so there's nothing to `use` there.
+
+**Not yet done, next when you resume:** the three custom root actions
+(`RunScan`/`SaveVersion`/`GenerateMigrationPackage`) plus `UploadDocument`/
+`AddNote` on Version — adding these means ADT will need to re-scaffold
+`ZBP_I_RAP_MT_HDR` with the new action method stubs — then service
 definition/binding, detector framework classes, rule/delta engines, TR
 generator, doc store stub.
 

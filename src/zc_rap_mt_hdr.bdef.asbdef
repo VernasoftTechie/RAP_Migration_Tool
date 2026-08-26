@@ -1,0 +1,57 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_RAP_MT_HDR alias MigrationWorkspace
+{
+  use create;
+  use association _Version { create; }
+}
+
+define behavior for ZC_RAP_MT_VER alias Version
+{
+  use association _Header;
+  use association _Object   { create; }
+  use association _Config   { create; }
+  use association _Finding  { create; }
+  use association _Blocker  { create; }
+  use association _Document { create; }
+  use association _Note     { create; }
+}
+
+define behavior for ZC_RAP_MT_OBJ alias RepositoryObject
+{
+  use association _Version;
+  use association _Source { create; }
+}
+
+define behavior for ZC_RAP_MT_SRC alias SourceRepository
+{
+  use association _Object;
+}
+
+define behavior for ZC_RAP_MT_CFG alias Configuration
+{
+  use association _Version;
+}
+
+define behavior for ZC_RAP_MT_OPT alias OptimizationFinding
+{
+  use association _Version;
+  use association _Object;
+}
+
+define behavior for ZC_RAP_MT_BLK alias Blocker
+{
+  use association _Version;
+  use association _Object;
+}
+
+define behavior for ZC_RAP_MT_DOC alias Document
+{
+  use association _Version;
+}
+
+define behavior for ZC_RAP_MT_NOTE alias ArchitectNote
+{
+  use association _Version;
+}
