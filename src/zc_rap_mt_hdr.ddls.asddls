@@ -1,4 +1,3 @@
-@Metadata.layer: #CORE
 @UI.headerInfo: {
   typeName: 'Migration Workspace',
   typeNamePlural: 'Migration Workspaces',

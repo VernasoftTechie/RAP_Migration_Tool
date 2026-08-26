@@ -1,4 +1,3 @@
-@Metadata.layer: #CORE
 @UI.headerInfo: {
   typeName: 'Architect Note',
   typeNamePlural: 'Architect Notes',

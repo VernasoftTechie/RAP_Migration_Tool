@@ -1,4 +1,3 @@
-@Metadata.layer: #CORE
 @UI.headerInfo: {
   typeName: 'Optimization Finding',
   typeNamePlural: 'Optimization Findings',

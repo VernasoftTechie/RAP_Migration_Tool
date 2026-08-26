@@ -1,4 +1,3 @@
-@Metadata.layer: #CORE
 @UI.headerInfo: {
   typeName: 'Source',
   typeNamePlural: 'Sources',

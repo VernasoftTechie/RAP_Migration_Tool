@@ -160,6 +160,19 @@ source and Doc 4.
   correct reading of the composition tree, not a deviation from it.
 - `Pack`, not `Package`, used consistently — no reversions.
 
+**Fixed:** `@Metadata.layer: #CORE` (present on all 9 projection views)
+is invalid at that position — "Annotation 'METADATA.LAYER' used at wrong
+position (wrong scope)" — which broke parsing on `ZC_RAP_MT_HDR` and
+poisoned the *entire* combined activation queue, including the 9 already
+-working interface views (their "error in dependencies" / "could not be
+activated" messages were downstream noise from this one parse failure,
+not new problems in those objects). Removed the annotation from all 9 —
+it's a metadata-classification annotation, not functionally required.
+The separate "No root entity is found in this BO structure" message is
+almost certainly the same cascading symptom (RAP couldn't recognize
+`ZC_RAP_MT_HDR` as root once it failed to parse) rather than an
+independent issue — should clear once this re-pulls clean.
+
 **Not yet done, next when you resume:** behavior definitions, service
 definition/binding, detector framework classes, rule/delta engines, TR
 generator, doc store stub.

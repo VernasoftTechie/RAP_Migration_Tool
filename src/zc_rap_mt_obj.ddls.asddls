@@ -1,4 +1,3 @@
-@Metadata.layer: #CORE
 @UI.headerInfo: {
   typeName: 'Repository Object',
   typeNamePlural: 'Repository Objects',
