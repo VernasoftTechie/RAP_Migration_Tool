@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <abapGit version="v1.0.0" serializer="LCL_OBJECT_DOMA" serializer_version="v1.0.0">
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
@@ -6,37 +6,33 @@
     <DOMNAME>ZRAP_MT_BLKCLASS</DOMNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
     <DATATYPE>CHAR</DATATYPE>
-    <LENG>0000010</LENG>
-    <OUTPUTLEN>0000010</OUTPUTLEN>
+    <LENG>000010</LENG>
+    <OUTPUTLEN>000010</OUTPUTLEN>
     <VALEXI>X</VALEXI>
     <DDTEXT>ZRAP_MT: RAP blocker classification</DDTEXT>
    </DD01V>
    <DD07V_TAB>
     <DD07V>
-     <DOMNAME>ZRAP_MT_BLKCLASS</DOMNAME>
-     <DDLANGUAGE>E</DDLANGUAGE>
      <VALPOS>0001</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
      <DOMVALUE_L>BLOCKER</DOMVALUE_L>
      <DDTEXT>Blocker</DDTEXT>
     </DD07V>
     <DD07V>
-     <DOMNAME>ZRAP_MT_BLKCLASS</DOMNAME>
-     <DDLANGUAGE>E</DDLANGUAGE>
      <VALPOS>0002</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
      <DOMVALUE_L>WARNING</DOMVALUE_L>
      <DDTEXT>Warning</DDTEXT>
     </DD07V>
     <DD07V>
-     <DOMNAME>ZRAP_MT_BLKCLASS</DOMNAME>
-     <DDLANGUAGE>E</DDLANGUAGE>
      <VALPOS>0003</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
      <DOMVALUE_L>REVIEW</DOMVALUE_L>
      <DDTEXT>Review</DDTEXT>
     </DD07V>
     <DD07V>
-     <DOMNAME>ZRAP_MT_BLKCLASS</DOMNAME>
-     <DDLANGUAGE>E</DDLANGUAGE>
      <VALPOS>0004</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
      <DOMVALUE_L>CONFIG</DOMVALUE_L>
      <DDTEXT>Configuration</DDTEXT>
     </DD07V>
