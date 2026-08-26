@@ -173,7 +173,33 @@ almost certainly the same cascading symptom (RAP couldn't recognize
 `ZC_RAP_MT_HDR` as root once it failed to parse) rather than an
 independent issue — should clear once this re-pulls clean.
 
-**Not yet done, next when you resume:** behavior definitions, service
+### Behavior layer — root only, first (1/9), unverified metadata format
+
+- [ ] `ZI_RAP_MT_HDR` root behavior definition — `create` only, no custom
+      actions yet (`RunScan`/`SaveVersion`/`GenerateMigrationPackage`
+      deliberately deferred until this activates, per the same
+      start-small-first lesson from CDS). Uses `.bdef.asbdef` for the
+      source (standard RAP syntax, confident) and a **guessed** `.bdef.xml`
+      metadata format (`<BDEF>` root, `BDEFNAME`/`DDLANGUAGE`/`DDTEXT`
+      fields) — following the same "structure name matches the object
+      type suffix" pattern that turned out correct for `<DDLS>`, but
+      unverified until proven.
+- **If this fails to pull/activate**: don't iterate on more XML guesses —
+  create `ZI_RAP_MT_HDR`'s behavior definition by hand in ADT (paste the
+  `.bdef.asbdef` content), activate, then run abapGit Sync. That's the
+  same technique that resolved the CDS metadata format, and it's faster
+  than another guess-and-report cycle.
+- **The implementation class (`ZBP_RAP_MT_HDR`) is not included here on
+  purpose.** RAP behavior handler method signatures are framework-
+  generated and tied to the exact system's RAP runtime patch level —
+  the same reason the earlier `HR_DataQuality_RAP_PoC` project's README
+  flagged this. Once the behavior definition activates, **let ADT
+  scaffold the class** (via "New Behavior Implementation" when you
+  activate the BDEF) rather than me hand-writing the signatures — I'll
+  fill in the method bodies once the shell exists.
+
+**Not yet done, next when you resume:** the other 8 behavior definitions
+(mostly insert-only children), the three custom root actions, service
 definition/binding, detector framework classes, rule/delta engines, TR
 generator, doc store stub.
 
