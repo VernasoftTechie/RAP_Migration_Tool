@@ -1,6 +1,3 @@
-@AbapCatalog.sqlViewName: 'ZIRAPMTOPT'
-@AbapCatalog.compiler.compareFilter: true
-@AbapCatalog.preserveKey: true
 @AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'RAP MT - Optimization Finding'
 define view entity ZI_RAP_MT_OPT

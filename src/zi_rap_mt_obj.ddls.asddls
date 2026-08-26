@@ -1,6 +1,3 @@
-@AbapCatalog.sqlViewName: 'ZIRAPMTOBJ'
-@AbapCatalog.compiler.compareFilter: true
-@AbapCatalog.preserveKey: true
 @AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'RAP MT - Repository Object'
 define view entity ZI_RAP_MT_OBJ
@@ -20,7 +17,7 @@ define view entity ZI_RAP_MT_OBJ
   key object_uuid                 as ObjectUUID,
       object_name                  as ObjectName,
       object_type                   as ObjectType,
-      dev_package                    as Package,
+      dev_package                    as Pack,
       last_changed_by                as LastChangedBy,
       last_changed_on                as LastChangedOn,
       fingerprint                     as Fingerprint,

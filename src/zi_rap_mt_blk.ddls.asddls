@@ -1,6 +1,3 @@
-@AbapCatalog.sqlViewName: 'ZIRAPMTBLK'
-@AbapCatalog.compiler.compareFilter: true
-@AbapCatalog.preserveKey: true
 @AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'RAP MT - RAP Blocker'
 define view entity ZI_RAP_MT_BLK

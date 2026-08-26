@@ -2,6 +2,7 @@
 @EndUserText.label: 'RAP MT - Migration Workspace'
 define root view entity ZI_RAP_MT_HDR
   as select from zrap_mt_hdr
+  composition [0..*] of ZI_RAP_MT_VER as _Version
 {
   key migration_id            as MigrationID,
       application_name        as ApplicationName,
@@ -18,6 +19,7 @@ define root view entity ZI_RAP_MT_HDR
       readiness_cfg_pct        as ReadinessConfigPct,
       readiness_doc_pct        as ReadinessDocumentationPct,
       readiness_opt_health     as ReadinessOptimizationHealth,
-      readiness_blocker_count  as ReadinessBlockerCount
+      readiness_blocker_count  as ReadinessBlockerCount,
 
+      _Version
 }

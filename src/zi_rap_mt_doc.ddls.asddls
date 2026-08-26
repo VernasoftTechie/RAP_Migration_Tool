@@ -1,6 +1,3 @@
-@AbapCatalog.sqlViewName: 'ZIRAPMTDOC'
-@AbapCatalog.compiler.compareFilter: true
-@AbapCatalog.preserveKey: true
 @AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'RAP MT - Document'
 define view entity ZI_RAP_MT_DOC

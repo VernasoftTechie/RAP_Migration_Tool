@@ -74,42 +74,55 @@ naming prefix don't need to match.
 - [x] `ZI_RAP_MT_HDR` (root), `ZI_RAP_MT_VER`, `ZI_RAP_MT_OBJ`,
       `ZI_RAP_MT_SRC`, `ZI_RAP_MT_CFG`, `ZI_RAP_MT_OPT`, `ZI_RAP_MT_BLK`,
       `ZI_RAP_MT_DOC`, `ZI_RAP_MT_NOTE`
-- All `sqlViewName` values are compact 10-11 character names
-  (`ZIRAPMTHDR`, `ZIRAPMTVER`, ...) — pre-checked against the same
-  16-character limit that caused the `ZRAP_MT_OTYPE_T` rename.
-- `.ddls.xml` metadata format here is **my best-effort guess**, unlike
-  the tables (which now reflect your real system's actual serialization
-  after the Sync merge) — there's no real CDS example yet to verify
-  against, since none existed before this batch. Flag it if the first
-  pull errors on the XML rather than the DDL source itself — the two
-  are separable problems.
-- **Fixed (round 1):** the CDS source files were first written as
-  `.ddls.abap`, which abapGit doesn't recognize — it needs `.ddls.asddls`
-  specifically (confirmed by the "File not found" error on first pull).
-  Renamed all 9. Reference for extensions used going forward: CDS
-  `.ddls.asddls`, Behavior Definition `.bdef.asbdef`, Service Definition
-  `.srvd.asrvd`, classes/interfaces plain `.clas.abap`/`.intf.abap` —
-  everything that isn't classic ABAP source gets its own `as*` extension.
-- **Attempted (round 2), did not fix it:** "Entity name and name of DDL
-  source are not identical" — tried `DDLNAME` (guessing it's the real
-  DD25V field for the source name) instead of the invented `VIEWNAME`/
-  `DDSOURCENAME`. Same error persisted on re-pull.
-- **Attempted (round 3):** stripped the metadata down to just
-  `DDLANGUAGE` + `DDTEXT`, no name field at all — letting abapGit derive
-  the object name purely from context, the same way it apparently does
-  for `DEVC`/`TABL`/`DOMA`. **If this still fails**, the honest
-  conclusion is that guessing this specific schema further isn't
-  productive without a real reference file — the fallback is to create
-  these 9 CDS views manually in ADT (New → Other ABAP Repository Object
-  → Data Definition, name it, paste the corresponding `.ddls.asddls`
-  content as the source, activate). The `.asddls` DDL source itself is
-  standard CDS syntax and hasn't been the source of any error so far —
-  only the XML metadata wrapper has been the problem.
-- Minor polish opportunity, not a blocker: `ZI_RAP_MT_OBJ`'s
-  `_ObjectTypeText` association points directly at table
-  `ZRAP_MT_OTYPE_T` rather than a small CDS view wrapping it. Works fine
-  in classic on-premise ABAP, just not "ABAP Cloud"-idiomatic — can
-  revisit later if this ever needs to run release-contract-clean.
+
+**Resolved, after three failed guesses at the metadata format.** Root
+cause: the correct top-level element in `.ddls.xml` is `<DDLS>`, not
+`<DD25V>` — an invented structure name that never matched anything, which
+is why changing the fields inside it (three different attempts) never
+made a difference. Confirmed by getting one real, activated example
+(`ZI_RAP_MT_HDR`, created by hand in ADT then pulled via abapGit Sync —
+same technique that fixed the table format earlier). The real shape:
+
+```xml
+<DDLS>
+  <DDLNAME>ZI_RAP_MT_HDR</DDLNAME>
+  <DDLANGUAGE>E</DDLANGUAGE>
+  <DDTEXT>Migration Header Interface View</DDTEXT>
+  <SOURCE_TYPE>W</SOURCE_TYPE>
+</DDLS>
+```
+
+There's also a **third required file** per CDS view, `<name>.ddls.baseinfo`
+— a small JSON file (not XML) listing the view's source table(s):
+
+```json
+{ "BASEINFO": { "FROM": ["ZRAP_MT_HDR"] } }
+```
+
+I didn't know this file type existed; it's now created for all 9 views.
+
+**Two more corrections from the real example:**
+- `@AbapCatalog.sqlViewName`, `@AbapCatalog.compiler.compareFilter`, and
+  `@AbapCatalog.preserveKey` are dropped from every view — not needed for
+  `define view entity` syntax (that first annotation is for classic
+  `define view`) and caused errors on this system. This also makes the
+  16-character `sqlViewName` limit moot here — good to know, but the
+  concern doesn't apply to this object type after all.
+- **Every CDS field aliased `Package` is renamed to `Pack`** — per your
+  observation, even the CDS-level alias (not just the underlying DB
+  column, already `DEV_PACKAGE`) triggers a reserved-word conflict.
+  Fixed in `ZI_RAP_MT_HDR` and `ZI_RAP_MT_OBJ`, the two views that expose
+  this field, and in Doc 4.
+- `ZI_RAP_MT_HDR`'s `_Version` composition (temporarily removed on your
+  system since `ZI_RAP_MT_VER` didn't exist yet when you created `HDR`
+  standalone for diagnosis) is restored — pushing all 9 together this
+  time means the dependency exists.
+
+Minor polish opportunity, not a blocker: `ZI_RAP_MT_OBJ`'s
+`_ObjectTypeText` association points directly at table `ZRAP_MT_OTYPE_T`
+rather than a small CDS view wrapping it. Works fine in classic
+on-premise ABAP, just not "ABAP Cloud"-idiomatic — can revisit later if
+this ever needs to run release-contract-clean.
 
 **Not yet done, next when you resume:** CDS projection views + behavior
 definitions, service definition/binding, detector framework classes,

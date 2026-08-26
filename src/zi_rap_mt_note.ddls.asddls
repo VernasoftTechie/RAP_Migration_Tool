@@ -1,6 +1,3 @@
-@AbapCatalog.sqlViewName: 'ZIRAPMTNOTE'
-@AbapCatalog.compiler.compareFilter: true
-@AbapCatalog.preserveKey: true
 @AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'RAP MT - Architect Note'
 define view entity ZI_RAP_MT_NOTE

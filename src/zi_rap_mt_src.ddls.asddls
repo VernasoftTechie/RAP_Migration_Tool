@@ -1,6 +1,3 @@
-@AbapCatalog.sqlViewName: 'ZIRAPMTSRC'
-@AbapCatalog.compiler.compareFilter: true
-@AbapCatalog.preserveKey: true
 @AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'RAP MT - Source Repository'
 define view entity ZI_RAP_MT_SRC

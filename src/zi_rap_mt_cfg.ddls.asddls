@@ -1,6 +1,3 @@
-@AbapCatalog.sqlViewName: 'ZIRAPMTCFG'
-@AbapCatalog.compiler.compareFilter: true
-@AbapCatalog.preserveKey: true
 @AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'RAP MT - Configuration Reference'
 define view entity ZI_RAP_MT_CFG
