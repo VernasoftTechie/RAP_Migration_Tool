@@ -3,11 +3,9 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DD25V>
-    <VIEWNAME>ZI_RAP_MT_OPT</VIEWNAME>
+    <DDLNAME>ZI_RAP_MT_OPT</DDLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
-    <DDTEXT>RAP MT - Optimization Finding</DDTEXT>
-    <DDSOURCENAME>ZI_RAP_MT_OPT</DDSOURCENAME>
-    <DDSOURCESTATE>1</DDSOURCESTATE>
+    <DESCRIPT>RAP MT - Optimization Finding</DESCRIPT>
    </DD25V>
   </asx:values>
  </asx:abap>

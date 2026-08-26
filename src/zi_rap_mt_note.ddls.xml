@@ -3,11 +3,9 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DD25V>
-    <VIEWNAME>ZI_RAP_MT_NOTE</VIEWNAME>
+    <DDLNAME>ZI_RAP_MT_NOTE</DDLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
-    <DDTEXT>RAP MT - Architect Note</DDTEXT>
-    <DDSOURCENAME>ZI_RAP_MT_NOTE</DDSOURCENAME>
-    <DDSOURCESTATE>1</DDSOURCESTATE>
+    <DESCRIPT>RAP MT - Architect Note</DESCRIPT>
    </DD25V>
   </asx:values>
  </asx:abap>

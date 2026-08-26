@@ -83,13 +83,18 @@ naming prefix don't need to match.
   against, since none existed before this batch. Flag it if the first
   pull errors on the XML rather than the DDL source itself — the two
   are separable problems.
-- **Fixed:** the CDS source files were first written as `.ddls.abap`,
-  which abapGit doesn't recognize — it needs `.ddls.asddls` specifically
-  (confirmed by the "File not found" error on first pull). Renamed all 9.
-  Reference for extensions used going forward: CDS `.ddls.asddls`,
-  Behavior Definition `.bdef.asbdef`, Service Definition `.srvd.asrvd`,
-  classes/interfaces plain `.clas.abap`/`.intf.abap` — everything that
-  isn't classic ABAP source gets its own `as*` extension in abapGit.
+- **Fixed (round 1):** the CDS source files were first written as
+  `.ddls.abap`, which abapGit doesn't recognize — it needs `.ddls.asddls`
+  specifically (confirmed by the "File not found" error on first pull).
+  Renamed all 9. Reference for extensions used going forward: CDS
+  `.ddls.asddls`, Behavior Definition `.bdef.asbdef`, Service Definition
+  `.srvd.asrvd`, classes/interfaces plain `.clas.abap`/`.intf.abap` —
+  everything that isn't classic ABAP source gets its own `as*` extension.
+- **Fixed (round 2):** "Entity name and name of DDL source are not
+  identical" — the `.ddls.xml` metadata used invented field names
+  (`VIEWNAME`, `DDSOURCENAME`) instead of the real DD25V field, `DDLNAME`.
+  Corrected all 9 to use `DDLNAME` (matching the entity name in the DDL
+  source exactly) and `DESCRIPT` for the text.
 - Minor polish opportunity, not a blocker: `ZI_RAP_MT_OBJ`'s
   `_ObjectTypeText` association points directly at table
   `ZRAP_MT_OTYPE_T` rather than a small CDS view wrapping it. Works fine

@@ -3,11 +3,9 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DD25V>
-    <VIEWNAME>ZI_RAP_MT_BLK</VIEWNAME>
+    <DDLNAME>ZI_RAP_MT_BLK</DDLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
-    <DDTEXT>RAP MT - RAP Blocker</DDTEXT>
-    <DDSOURCENAME>ZI_RAP_MT_BLK</DDSOURCENAME>
-    <DDSOURCESTATE>1</DDSOURCESTATE>
+    <DESCRIPT>RAP MT - RAP Blocker</DESCRIPT>
    </DD25V>
   </asx:values>
  </asx:abap>
