@@ -25,6 +25,8 @@ persistent table zrap_mt_ver
 lock dependent by _Header
 authorization dependent by _Header
 {
+  field ( readonly ) MigrationID;
+
   association _Header;
   association _Object   { create; }
   association _Config   { create; }
@@ -39,6 +41,8 @@ persistent table zrap_mt_obj
 lock dependent by _Version
 authorization dependent by _Version
 {
+  field ( readonly ) MigrationID, VersionNo;
+
   association _Version;
   association _Source { create; }
 }
@@ -48,6 +52,8 @@ persistent table zrap_mt_src
 lock dependent by _Object
 authorization dependent by _Object
 {
+  field ( readonly ) MigrationID, VersionNo, ObjectUUID;
+
   association _Object;
 }
 
@@ -56,6 +62,8 @@ persistent table zrap_mt_cfg
 lock dependent by _Version
 authorization dependent by _Version
 {
+  field ( readonly ) MigrationID, VersionNo;
+
   association _Version;
 }
 
@@ -64,6 +72,8 @@ persistent table zrap_mt_opt
 lock dependent by _Version
 authorization dependent by _Version
 {
+  field ( readonly ) MigrationID, VersionNo;
+
   association _Version;
   association _Object;
 }
@@ -73,6 +83,8 @@ persistent table zrap_mt_blk
 lock dependent by _Version
 authorization dependent by _Version
 {
+  field ( readonly ) MigrationID, VersionNo;
+
   association _Version;
   association _Object;
 }
@@ -82,6 +94,8 @@ persistent table zrap_mt_doc
 lock dependent by _Version
 authorization dependent by _Version
 {
+  field ( readonly ) MigrationID, VersionNo;
+
   association _Version;
 }
 
@@ -90,5 +104,7 @@ persistent table zrap_mt_note
 lock dependent by _Version
 authorization dependent by _Version
 {
+  field ( readonly ) MigrationID, VersionNo;
+
   association _Version;
 }

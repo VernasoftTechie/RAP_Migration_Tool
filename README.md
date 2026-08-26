@@ -197,6 +197,17 @@ independent issue — should clear once this re-pulls clean.
 - **Corrected implementation class name**: `ZBP_I_RAP_MT_HDR` (ADT's
   real generated name, with the `I_` infix), not `ZBP_RAP_MT_HDR` as
   Doc 5 first drafted. Doc 5 updated to match.
+- **Fixed:** "8 errors found" on activation — one per child entity, all
+  the same pattern: `The field "MIGRATIONID" is used for "parent"
+  dependency (in the ON clause of the association "_Header"). This means
+  it should be flagged as "readonly"`. Real RAP rule I missed when
+  stripping `field(readonly)` from the children along with `update`/
+  `delete`: **every field referenced in a to-parent association's `ON`
+  clause must be explicitly declared `field(readonly)`**, independent of
+  whether `update` itself is even declared for that entity. Added the
+  correct readonly field list back to all 8 children (e.g. `MigrationID,
+  VersionNo` for most; `MigrationID, VersionNo, ObjectUUID` for
+  `ZI_RAP_MT_SRC`, whose parent link uses all three).
 - **The implementation class body is still not included on purpose** —
   same reasoning as before: RAP behavior handler signatures are
   framework-generated per your system's RAP runtime patch level. No
