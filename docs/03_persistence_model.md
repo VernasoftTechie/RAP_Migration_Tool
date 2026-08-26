@@ -114,7 +114,9 @@ Non-key FK: OBJECT_UUID. Fields: `CATEGORY`, `SEVERITY`
 Key: MANDT, MIGRATION_ID, VERSION_NO, DOC_UUID. Fields: `DOC_TYPE`
 (`ZRAP_MT_DOCTYPE`), `OPENTEXT_ID` (CHAR60 — sized generously since a real
 OpenText BO ID format is still unknown, per the still-open question),
-`IS_STUBBED` (`ABAP_BOOL`), `FILE_NAME`, `UPLOADED_BY`, `TIMESTAMP`.
+`IS_STUBBED` (`ABAP_BOOL`), `FILE_NAME`, `UPLOADED_BY`, `UPLOAD_TIMESTAMP`
+(not bare `TIMESTAMP` — pre-emptively avoided as the same family of risk
+as `PACKAGE`).
 
 ### `ZRAP_MT_NOTE`
 
