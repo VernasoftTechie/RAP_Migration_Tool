@@ -1,3 +1,4 @@
+@AccessControl.authorizationCheck: #CHECK
 @UI.headerInfo: {
   typeName: 'Repository Object',
   typeNamePlural: 'Repository Objects',

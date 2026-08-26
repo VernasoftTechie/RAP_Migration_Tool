@@ -220,6 +220,15 @@ independent issue — should clear once this re-pulls clean.
   `lock`/`authorization dependent by` at that instead of `_Version`/
   `_Object`. This is the same pattern SAP's own Travel/Booking/
   BookingSupplement reference app uses for exactly this reason.
+- **Fixed:** "Only one 'child to parent' association allowed" — RAP
+  restricts each entity to exactly one `association to parent` (reserved
+  for the real, immediate composition parent). The new `_Header`
+  associations added for lock/authorization delegation must be **plain**
+  associations (`association to ZI_RAP_MT_HDR as _Header`, no `parent`
+  keyword) — fixed on all 7 affected interface views.
+- **Fixed:** `@AccessControl.authorizationCheck: #CHECK` was missing from
+  all 9 CDS projection views (only added to the interface views
+  originally) — added to all 9.
 - **The implementation class body is still not included on purpose** —
   same reasoning as before: RAP behavior handler signatures are
   framework-generated per your system's RAP runtime patch level. No

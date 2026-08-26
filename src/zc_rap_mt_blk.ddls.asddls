@@ -1,3 +1,4 @@
+@AccessControl.authorizationCheck: #CHECK
 @UI.headerInfo: {
   typeName: 'RAP Blocker',
   typeNamePlural: 'RAP Blockers',

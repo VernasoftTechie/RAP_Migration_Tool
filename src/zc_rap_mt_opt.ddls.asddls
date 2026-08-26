@@ -1,3 +1,4 @@
+@AccessControl.authorizationCheck: #CHECK
 @UI.headerInfo: {
   typeName: 'Optimization Finding',
   typeNamePlural: 'Optimization Findings',

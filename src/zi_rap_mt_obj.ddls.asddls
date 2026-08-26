@@ -12,7 +12,7 @@ define view entity ZI_RAP_MT_OBJ
   association [0..1] to ZRAP_MT_OTYPE_T as _ObjectTypeText
     on $projection.ObjectType = _ObjectTypeText.OBJECT_TYPE
 
-  association to parent ZI_RAP_MT_HDR as _Header
+  association to ZI_RAP_MT_HDR as _Header
     on $projection.MigrationID = _Header.MigrationID
 {
   key migration_id              as MigrationID,
