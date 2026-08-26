@@ -14,5 +14,5 @@ define view entity ZC_RAP_MT_SRC
   SourceCode,
 
   _Object : redirected to parent ZC_RAP_MT_OBJ,
-  _Header
+  _Header : redirected to ZC_RAP_MT_HDR
 }

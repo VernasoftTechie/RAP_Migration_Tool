@@ -132,10 +132,14 @@ reference apps use (e.g. Travel/Booking/BookingSupplement).
 existing `_Object` association.
 
 This `_Header` association must also be **exposed at the projection
-layer** (`ZC_RAP_MT_*`), as a plain pass-through, on the same 7 entities
-— otherwise the projection behavior definition can't "project" the lock
-master relation, even though the projection layer never navigates it for
-data purposes.
+layer** (`ZC_RAP_MT_*`) on the same 7 entities — otherwise the projection
+behavior definition can't "project" the lock master relation, even
+though the projection layer never navigates it for data purposes. It
+must additionally be **redirected to the projection view**
+(`_Header : redirected to ZC_RAP_MT_HDR`, not left bare pointing at the
+interface view `ZI_RAP_MT_HDR`) — an association can't be used
+transactionally in a projection behavior definition while its target is
+still an interface-layer entity.
 
 ## 3. Projection View Notes
 

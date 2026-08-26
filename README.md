@@ -258,6 +258,13 @@ entities, all 4 fixes above applied).**
   The metadata format itself (the actual thing this doc originally
   flagged as "should go smoothly") had no errors — this was a missing
   association, not a format problem.
+- **Fixed:** "The association '_HEADER' cannot be used as a transactional
+  association since the target entity 'ZI_RAP_MT_HDR' is not redirected
+  to 'ZC_RAP_MT_HDR' in the CDS definition." Exposing `_Header` bare
+  wasn't enough — an association whose target is an interface view must
+  be explicitly redirected to the corresponding projection view to be
+  usable in a projection behavior definition. Changed to `_Header :
+  redirected to ZC_RAP_MT_HDR` on all 7 views.
 
 **Not yet done, next when you resume:** the three custom root actions
 (`RunScan`/`SaveVersion`/`GenerateMigrationPackage`) plus `UploadDocument`/

@@ -33,5 +33,5 @@ define view entity ZC_RAP_MT_OBJ
   _Version : redirected to parent ZC_RAP_MT_VER,
   _Source  : redirected to composition child ZC_RAP_MT_SRC,
   _ObjectTypeText,
-  _Header
+  _Header : redirected to ZC_RAP_MT_HDR
 }
