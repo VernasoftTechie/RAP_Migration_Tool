@@ -6,7 +6,7 @@
     <DDLNAME>ZC_RAP_MT_HDR</DDLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
     <DDTEXT>Migration Workspace Projection View</DDTEXT>
-    <SOURCE_TYPE>W</SOURCE_TYPE>
+    <SOURCE_TYPE>P</SOURCE_TYPE>
    </DDLS>
   </asx:values>
  </asx:abap>

@@ -1,5 +1,5 @@
-managed implementation in class zbp_rap_mt_hdr unique;
-strict(2);
+managed implementation in class zbp_i_rap_mt_hdr unique;
+strict ( 2 );
 
 define behavior for ZI_RAP_MT_HDR alias MigrationWorkspace
 persistent table zrap_mt_hdr
@@ -18,4 +18,77 @@ etag master LastScanTimestamp
   field ( mandatory ) ApplicationName, ApplicationType, Pack;
 
   association _Version { create; }
+}
+
+define behavior for ZI_RAP_MT_VER alias Version
+persistent table zrap_mt_ver
+lock dependent by _Header
+authorization dependent by _Header
+{
+  association _Header;
+  association _Object   { create; }
+  association _Config   { create; }
+  association _Finding  { create; }
+  association _Blocker  { create; }
+  association _Document { create; }
+  association _Note     { create; }
+}
+
+define behavior for ZI_RAP_MT_OBJ alias RepositoryObject
+persistent table zrap_mt_obj
+lock dependent by _Version
+authorization dependent by _Version
+{
+  association _Version;
+  association _Source { create; }
+}
+
+define behavior for ZI_RAP_MT_SRC alias SourceRepository
+persistent table zrap_mt_src
+lock dependent by _Object
+authorization dependent by _Object
+{
+  association _Object;
+}
+
+define behavior for ZI_RAP_MT_CFG alias Configuration
+persistent table zrap_mt_cfg
+lock dependent by _Version
+authorization dependent by _Version
+{
+  association _Version;
+}
+
+define behavior for ZI_RAP_MT_OPT alias OptimizationFinding
+persistent table zrap_mt_opt
+lock dependent by _Version
+authorization dependent by _Version
+{
+  association _Version;
+  association _Object;
+}
+
+define behavior for ZI_RAP_MT_BLK alias Blocker
+persistent table zrap_mt_blk
+lock dependent by _Version
+authorization dependent by _Version
+{
+  association _Version;
+  association _Object;
+}
+
+define behavior for ZI_RAP_MT_DOC alias Document
+persistent table zrap_mt_doc
+lock dependent by _Version
+authorization dependent by _Version
+{
+  association _Version;
+}
+
+define behavior for ZI_RAP_MT_NOTE alias ArchitectNote
+persistent table zrap_mt_note
+lock dependent by _Version
+authorization dependent by _Version
+{
+  association _Version;
 }

@@ -6,7 +6,7 @@
     <DDLNAME>ZC_RAP_MT_OBJ</DDLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
     <DDTEXT>Repository Object Projection View</DDTEXT>
-    <SOURCE_TYPE>W</SOURCE_TYPE>
+    <SOURCE_TYPE>P</SOURCE_TYPE>
    </DDLS>
   </asx:values>
  </asx:abap>
