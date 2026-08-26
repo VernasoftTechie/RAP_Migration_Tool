@@ -3,9 +3,8 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DD25V>
-    <DDLNAME>ZI_RAP_MT_HDR</DDLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
-    <DESCRIPT>RAP MT - Migration Workspace</DESCRIPT>
+    <DDTEXT>RAP MT - Migration Workspace</DDTEXT>
    </DD25V>
   </asx:values>
  </asx:abap>
