@@ -90,11 +90,21 @@ naming prefix don't need to match.
   `.ddls.asddls`, Behavior Definition `.bdef.asbdef`, Service Definition
   `.srvd.asrvd`, classes/interfaces plain `.clas.abap`/`.intf.abap` —
   everything that isn't classic ABAP source gets its own `as*` extension.
-- **Fixed (round 2):** "Entity name and name of DDL source are not
-  identical" — the `.ddls.xml` metadata used invented field names
-  (`VIEWNAME`, `DDSOURCENAME`) instead of the real DD25V field, `DDLNAME`.
-  Corrected all 9 to use `DDLNAME` (matching the entity name in the DDL
-  source exactly) and `DESCRIPT` for the text.
+- **Attempted (round 2), did not fix it:** "Entity name and name of DDL
+  source are not identical" — tried `DDLNAME` (guessing it's the real
+  DD25V field for the source name) instead of the invented `VIEWNAME`/
+  `DDSOURCENAME`. Same error persisted on re-pull.
+- **Attempted (round 3):** stripped the metadata down to just
+  `DDLANGUAGE` + `DDTEXT`, no name field at all — letting abapGit derive
+  the object name purely from context, the same way it apparently does
+  for `DEVC`/`TABL`/`DOMA`. **If this still fails**, the honest
+  conclusion is that guessing this specific schema further isn't
+  productive without a real reference file — the fallback is to create
+  these 9 CDS views manually in ADT (New → Other ABAP Repository Object
+  → Data Definition, name it, paste the corresponding `.ddls.asddls`
+  content as the source, activate). The `.asddls` DDL source itself is
+  standard CDS syntax and hasn't been the source of any error so far —
+  only the XML metadata wrapper has been the problem.
 - Minor polish opportunity, not a blocker: `ZI_RAP_MT_OBJ`'s
   `_ObjectTypeText` association points directly at table
   `ZRAP_MT_OTYPE_T` rather than a small CDS view wrapping it. Works fine
