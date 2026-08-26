@@ -69,9 +69,29 @@ is unrelated to object naming — `ZRAP_MT_*` objects living inside package
 `ZRAP_MIGR` is completely normal; a package's name and its objects'
 naming prefix don't need to match.
 
-**Not yet done, next when you resume:** CDS interface + projection
-views, behavior definitions, service definition/binding, detector
-framework classes, rule/delta engines, TR generator, doc store stub.
+### CDS layer — interface views complete (9/9)
+
+- [x] `ZI_RAP_MT_HDR` (root), `ZI_RAP_MT_VER`, `ZI_RAP_MT_OBJ`,
+      `ZI_RAP_MT_SRC`, `ZI_RAP_MT_CFG`, `ZI_RAP_MT_OPT`, `ZI_RAP_MT_BLK`,
+      `ZI_RAP_MT_DOC`, `ZI_RAP_MT_NOTE`
+- All `sqlViewName` values are compact 10-11 character names
+  (`ZIRAPMTHDR`, `ZIRAPMTVER`, ...) — pre-checked against the same
+  16-character limit that caused the `ZRAP_MT_OTYPE_T` rename.
+- `.ddls.xml` metadata format here is **my best-effort guess**, unlike
+  the tables (which now reflect your real system's actual serialization
+  after the Sync merge) — there's no real CDS example yet to verify
+  against, since none existed before this batch. Flag it if the first
+  pull errors on the XML rather than the DDL source itself — the two
+  are separable problems.
+- Minor polish opportunity, not a blocker: `ZI_RAP_MT_OBJ`'s
+  `_ObjectTypeText` association points directly at table
+  `ZRAP_MT_OTYPE_T` rather than a small CDS view wrapping it. Works fine
+  in classic on-premise ABAP, just not "ABAP Cloud"-idiomatic — can
+  revisit later if this ever needs to run release-contract-clean.
+
+**Not yet done, next when you resume:** CDS projection views + behavior
+definitions, service definition/binding, detector framework classes,
+rule/delta engines, TR generator, doc store stub.
 
 ### Design fixes caught while implementing
 

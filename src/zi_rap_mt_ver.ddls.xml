@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DDLS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD25V>
+    <VIEWNAME>ZI_RAP_MT_VER</VIEWNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DDTEXT>RAP MT - Version</DDTEXT>
+    <DDSOURCENAME>ZI_RAP_MT_VER</DDSOURCENAME>
+    <DDSOURCESTATE>1</DDSOURCESTATE>
+   </DD25V>
+  </asx:values>
+ </asx:abap>
+</abapGit>
