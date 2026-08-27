@@ -244,9 +244,13 @@ entities, both `_Header`-related fixes above applied).**
 
 ### Service definition — added, unverified metadata format
 
-- [ ] `ZRAP_MT_UI_SRVD.srvd.asrvd` — exposes all 9 projection views per
+- [ ] `ZRAP_MT_UI_SRVD.srvd.srvdsrv` — exposes all 9 projection views per
       Doc 6, same alias names used throughout (`MigrationWorkspace`,
       `Version`, `RepositoryObject`, ...).
+- **Fixed:** "File not found: zrap_mt_ui_srvd.srvd.srvdsrv" — the source
+  extension isn't `.srvd.asrvd` (my guess, following the `as*` pattern
+  that held for CDS/behavior definitions) — it's `.srvd.srvdsrv`. Not
+  every object type follows the same extension pattern; renamed.
 - `.srvd.xml` metadata is a **best-effort guess** reusing the exact shape
   confirmed correct for `BDEF` (`SRVD` is architecturally the same kind
   of newer RAP-specific artifact, not an older DDIC object like
