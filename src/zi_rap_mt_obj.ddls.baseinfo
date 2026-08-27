@@ -4,6 +4,7 @@
       "ZRAP_MT_OBJ"
     ],
     "ASSOCIATED": [
+      "ZI_RAP_MT_HDR",
       "ZI_RAP_MT_SRC",
       "ZI_RAP_MT_VER",
       "ZRAP_MT_OTYPE_T"

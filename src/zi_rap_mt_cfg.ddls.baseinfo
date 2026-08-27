@@ -4,6 +4,7 @@
       "ZRAP_MT_CFG"
     ],
     "ASSOCIATED": [
+      "ZI_RAP_MT_HDR",
       "ZI_RAP_MT_VER"
     ]
   }
