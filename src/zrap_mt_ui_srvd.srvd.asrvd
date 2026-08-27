@@ -1,0 +1,12 @@
+@EndUserText.label: 'RAP MT - Migration Intelligence UI'
+define service ZRAP_MT_UI_SRVD {
+  expose ZC_RAP_MT_HDR as MigrationWorkspace;
+  expose ZC_RAP_MT_VER as Version;
+  expose ZC_RAP_MT_OBJ as RepositoryObject;
+  expose ZC_RAP_MT_SRC as SourceRepository;
+  expose ZC_RAP_MT_CFG as Configuration;
+  expose ZC_RAP_MT_OPT as OptimizationFinding;
+  expose ZC_RAP_MT_BLK as Blocker;
+  expose ZC_RAP_MT_DOC as Document;
+  expose ZC_RAP_MT_NOTE as ArchitectNote;
+}

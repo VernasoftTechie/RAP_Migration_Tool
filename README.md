@@ -239,6 +239,28 @@ independent issue — should clear once this re-pulls clean.
 
 **Interface behavior definition — confirmed fully active (all 9
 entities, all 4 fixes above applied).**
+**Projection behavior definition — confirmed fully active (all 9
+entities, both `_Header`-related fixes above applied).**
+
+### Service definition — added, unverified metadata format
+
+- [ ] `ZRAP_MT_UI_SRVD.srvd.asrvd` — exposes all 9 projection views per
+      Doc 6, same alias names used throughout (`MigrationWorkspace`,
+      `Version`, `RepositoryObject`, ...).
+- `.srvd.xml` metadata is a **best-effort guess** reusing the exact shape
+  confirmed correct for `BDEF` (`SRVD` is architecturally the same kind
+  of newer RAP-specific artifact, not an older DDIC object like
+  `TABL`/`DDLS`), with `<SRVD>` as the root element following the same
+  "structure name matches the object type" pattern. If this fails,
+  same fallback as before: create it by hand in ADT, activate, Sync.
+- **The service binding is intentionally not included.** Even the
+  reference `HR_DataQuality_RAP_PoC` project explicitly left this as a
+  manual step ("binding is yours") — publishing/catalog assignment is
+  environment-specific in a way plain source usually isn't. Create it
+  in ADT: right-click `ZRAP_MT_UI_SRVD` → **New Service Binding**, name
+  it `ZRAP_MT_UI_SRVB`, binding type **OData V4 - UI**, then **Publish**.
+  That's the point where this stops being ADT-only and becomes an
+  actual Fiori-reachable URL.
 
 ### Projection behavior definition — added, high confidence
 
