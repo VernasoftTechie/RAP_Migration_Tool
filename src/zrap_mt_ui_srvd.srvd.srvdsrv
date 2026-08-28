@@ -9,4 +9,5 @@ define service ZRAP_MT_UI_SRVD {
   expose ZC_RAP_MT_BLK as Blocker;
   expose ZC_RAP_MT_DOC as Document;
   expose ZC_RAP_MT_NOTE as ArchitectNote;
+  expose ZC_RAP_MT_VH_APP as ApplicationReference;
 }

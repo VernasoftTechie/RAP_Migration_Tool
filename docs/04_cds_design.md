@@ -167,3 +167,34 @@ No new open decisions in this doc — it's a direct translation of Doc 2/3,
 not introducing new judgment calls. If Docs 1–3's provisional defaults
 change, this doc's field lists change mechanically with them, not
 structurally.
+
+## 6. Application Reference Value Help (added mid-implementation, not in the original 12 docs)
+
+Raised during testing: `ApplicationName` was a free-text field with no
+connection to what actually exists in the system, undermining Golden
+Rule 1 ("never assume any SAP repository object") at the exact point
+where verification matters most — before a Migration Workspace is even
+created. Fixed with a value help sourced from real repository data,
+dynamically filtered by whatever `ApplicationType` is already selected.
+
+`ZI_RAP_MT_VH_APP` — one `UNION ALL` view over the standard tables for
+each `ApplicationType`: `TSTC`/`TSTCT` (transactions, with text),
+`TRDIR` filtered by `SUBC = '1'`/`'M'` (reports/module pools),
+`SEOCLASS` (classes), `TDEVC`/`TDEVCTEXT` (packages, with text). Shape:
+`ApplicationType`, `ApplicationName`, `Description`. Projected as
+`ZC_RAP_MT_VH_APP`, exposed via the service definition as
+`ApplicationReference`.
+
+Wired to `ZC_RAP_MT_HDR-ApplicationName` via
+`@Consumption.valueHelpDefinition`, with `additionalBinding` filtering
+the value help list by the row's own `ApplicationType` — pick `TRAN`
+first, and the F4 on `ApplicationName` only shows real transaction codes.
+
+**Confidence flag, honestly:** `TSTC`/`TSTCT`/`TRDIR` (with `SUBC`
+values `1`/`M`) are standard, well-known tables/fields — high
+confidence. `TDEVCTEXT` as the package-description text table is
+moderate confidence — verify against your system. `SEOCLASS`'s class
+description isn't joined at all (left blank) — no confidently-known
+simple join exists for it; the value help still shows real class names,
+just without a friendly description alongside. None of this blocks the
+core value: every name in the picklist is guaranteed to exist.

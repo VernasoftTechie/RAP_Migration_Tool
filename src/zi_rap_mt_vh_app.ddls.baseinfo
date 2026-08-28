@@ -1,0 +1,12 @@
+{
+  "BASEINFO": {
+    "FROM": [
+      "TSTC",
+      "TSTCT",
+      "TRDIR",
+      "SEOCLASS",
+      "TDEVC",
+      "TDEVCTEXT"
+    ]
+  }
+}

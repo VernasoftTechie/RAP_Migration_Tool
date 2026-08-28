@@ -17,6 +17,9 @@ etag master LastScanTimestamp
 
   field ( mandatory ) ApplicationName, ApplicationType, Pack;
 
+  action RunScan result [1] $self;
+  action ( features : instance ) SaveVersion result [1] $self;
+
   association _Version { create; }
 }
 
@@ -26,6 +29,8 @@ lock dependent by _Header
 authorization dependent by _Header
 {
   field ( readonly ) MigrationID;
+
+  action GenerateMigrationPackage parameter ZRAP_MT_A_GENPKG result [1] $self;
 
   association _Header;
   association _Object   { create; }

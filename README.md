@@ -380,8 +380,46 @@ everything still ahead):
   system-generated. Tracked in the repo for completeness; never
   hand-authored.
 
-**Next:** the three custom root actions (`RunScan`/`SaveVersion`/
-`GenerateMigrationPackage`) plus `UploadDocument`/`AddNote` on Version —
-now that a real, verified implementation class exists, adding actions
-means re-running the same ADT quick-fix flow to get method stubs
-generated for them, then filling in bodies.
+## Added: custom actions + Application Reference value help
+
+Built while the Create-button investigation continues on your side.
+
+### Custom actions (2/9 files touched: both behavior definitions)
+
+- [ ] `RunScan`, `SaveVersion` added to `ZI_RAP_MT_HDR` (root) and
+      `ZC_RAP_MT_HDR` (projection) — no parameters, `result [1] $self`.
+- [ ] `GenerateMigrationPackage` added to `ZI_RAP_MT_VER`/`ZC_RAP_MT_VER`,
+      parameter `ZRAP_MT_A_GENPKG` (new CDS abstract entity, `{ Confirmed
+      : abap_bool; }`).
+- **Fixed a real inconsistency in Doc 5 while implementing this**: its
+  own §3 (the method sketch) always treated `GenerateMigrationPackage`
+  as version-scoped, but §1's code block had mistakenly declared it on
+  the root. Corrected in both the doc and the source.
+- `UploadDocument` and `AddNote` are **not** added yet — `AddNote` needs
+  no custom action at all (plain `association _Note { create; }` already
+  covers it exactly as designed, this was a Doc 5 mis-statement too, now
+  corrected); `UploadDocument`'s parameter shape depends on the
+  not-yet-built doc store adapter, not worth declaring blind.
+- **Next step on your side once pulled**: activating these will likely
+  prompt (or require, via the same Ctrl+1 quick-fix as before) ADT to
+  regenerate `ZBP_I_RAP_MT_HDR` with new method stubs for `run_scan`,
+  `save_version`, and `generatemigrationpackage`. Share the regenerated
+  class content once that happens — same principle as always: I write
+  real method bodies against a real scaffold, not a guessed one.
+
+### Application Reference value help (new — not in the original 12 docs)
+
+- [ ] `ZI_RAP_MT_VH_APP`/`ZC_RAP_MT_VH_APP` — a `UNION ALL` view over
+      `TSTC`/`TSTCT` (transactions), `TRDIR` (reports/module pools),
+      `SEOCLASS` (classes), `TDEVC`/`TDEVCTEXT` (packages), giving one
+      combined, type-discriminated list of real repository objects.
+      Exposed via the service as `ApplicationReference`.
+- [ ] Wired to `ApplicationName` via `@Consumption.valueHelpDefinition`
+      with `additionalBinding` on `ApplicationType` — pick `TRAN` first,
+      F4 shows only real transaction codes.
+- Full design rationale and confidence flags (moderate on
+  `TDEVCTEXT`, class descriptions deliberately left blank) are in Doc 4
+  §6.
+- Once Create itself works, this is the natural next thing to test: pick
+  `ApplicationType`, then check the `ApplicationName` F4 actually filters
+  to real objects of that type.

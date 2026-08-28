@@ -16,6 +16,10 @@ define root view entity ZC_RAP_MT_HDR
   ]
   key MigrationID,
 
+  @Consumption.valueHelpDefinition: [{
+    entity: { name: 'ZC_RAP_MT_VH_APP', element: 'ApplicationName' },
+    additionalBinding: [{ localElement: 'ApplicationType', element: 'ApplicationType', usage: #FILTER }]
+  }]
   @UI.lineItem: [ { position: 10, importance: #HIGH } ]
   @UI.identification: [ { position: 10 } ]
   @Search.defaultSearchElement: true

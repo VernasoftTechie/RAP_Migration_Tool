@@ -30,6 +30,18 @@ its normal parent association used for data navigation.
 
 ## 1. Root Behavior Definition — `ZRAP_MT_HDR`
 
+**Correction against the original sketch below:** `GenerateMigrationPackage`
+is bound to `ZI_RAP_MT_VER`, not the root — this doc's own §3 always
+described and implemented it that way (`READ ENTITY ... ZI_RAP_MT_VER`),
+but the code sketch here originally, incorrectly, placed it under
+`ZI_RAP_MT_HDR`. Also: `Package` → `Pack` (reserved-word rename, Doc 3/4),
+no `with draft` (non-draft was already decided in Doc 1 §3), and
+`UploadDocument`/`AddNote` are deferred — `AddNote` needs no custom action
+at all (the plain `association _Note { create; }` already covers it
+exactly as designed); `UploadDocument` needs its parameter shape properly
+designed against the not-yet-built doc store adapter before it's worth
+declaring.
+
 ```abap
 managed implementation in class zbp_i_rap_mt_hdr unique;
 strict(2);
@@ -46,13 +58,12 @@ etag master LastScanTimestamp
                       ReadinessRepositoryPct, ReadinessDdicPct,
                       ReadinessConfigPct, ReadinessDocumentationPct,
                       ReadinessOptimizationHealth, ReadinessBlockerCount;
-  field ( mandatory ) ApplicationName, ApplicationType, Package;
+  field ( mandatory ) ApplicationName, ApplicationType, Pack;
 
   action RunScan result [1] $self;
   action ( features : instance ) SaveVersion result [1] $self;
-  action GenerateMigrationPackage parameter ZRAP_MT_A_GENPKG result [1] $self;
 
-  association _Version { create; with draft; }
+  association _Version { create; }
 }
 
 define behavior for ZI_RAP_MT_VER alias Version
@@ -60,18 +71,21 @@ persistent table zrap_mt_ver
 lock dependent by _Header
 authorization dependent by _Header
 {
-  update ( features : instance );  " restricted to the immutability check, see §3
-  association _Object;
-  association _Config;
-  association _Finding;
-  association _Blocker;
-  association _Document;
-  association _Note;
+  action GenerateMigrationPackage parameter ZRAP_MT_A_GENPKG result [1] $self;
 
-  action ( features : instance ) UploadDocument parameter ZRAP_MT_A_DOCUPLOAD result [1] $self;
-  action AddNote parameter ZRAP_MT_A_ADDNOTE result [1] $self;
+  association _Header;
+  association _Object   { create; }
+  association _Config   { create; }
+  association _Finding  { create; }
+  association _Blocker  { create; }
+  association _Document { create; }
+  association _Note     { create; }
 }
 ```
+
+`ZRAP_MT_A_GENPKG` is a CDS **abstract entity** (`define abstract entity
+ZRAP_MT_A_GENPKG { Confirmed : abap_bool; }`) — the modern RAP pattern for
+action parameter types, used instead of a raw DDIC structure.
 
 `strict(2)` is deliberate — Phase 1 has no legacy compatibility need, so
 the strictest RAP mode catches modeling mistakes (missing `field`

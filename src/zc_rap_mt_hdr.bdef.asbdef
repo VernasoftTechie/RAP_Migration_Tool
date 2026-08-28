@@ -4,11 +4,15 @@ strict ( 2 );
 define behavior for ZC_RAP_MT_HDR alias MigrationWorkspace
 {
   use create;
+  use action RunScan;
+  use action SaveVersion;
   use association _Version { create; }
 }
 
 define behavior for ZC_RAP_MT_VER alias Version
 {
+  use action GenerateMigrationPackage;
+
   use association _Header;
   use association _Object   { create; }
   use association _Config   { create; }
